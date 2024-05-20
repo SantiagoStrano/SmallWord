@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{63D0DB34-9E6B-43F8-881C-71F0AF81011D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Fdsmlfr</RootNamespace>
+    <AssemblyName>Fdsmlfr</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\ComidaController.cs" />
+    <Compile Include="Controllers\CriaturaController.cs" />
+    <Compile Include="Controllers\DietaController.cs" />
+    <Compile Include="Controllers\EstrategiaController.cs" />
+    <Compile Include="Controllers\HabitadController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\ReinoController.cs" />
+    <Compile Include="Controllers\TerrenoController.cs" />
+    <Compile Include="FormComida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComida.Designer.cs">
+      <DependentUpon>FormComida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCriatura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCriatura.Designer.cs">
+      <DependentUpon>FormCriatura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGame.Designer.cs">
+      <DependentUpon>FormGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdmin.Designer.cs">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIndex.Designer.cs">
+      <DependentUpon>FormIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItem.Designer.cs">
+      <DependentUpon>FormItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormItemPrueba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormItemPrueba.Designer.cs">
+      <DependentUpon>FormItemPrueba.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPelea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPelea.Designer.cs">
+      <DependentUpon>FormPelea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\ICombate.cs" />
+    <Compile Include="Interfaces\ICriatura.cs" />
+    <Compile Include="Interfaces\IDieta.cs" />
+    <Compile Include="Interfaces\IHabitad.cs" />
+    <Compile Include="Interfaces\IInteractuable.cs" />
+    <Compile Include="Interfaces\IEstrategia.cs" />
+    <Compile Include="Interfaces\IMapa.cs" />
+    <Compile Include="Interfaces\IPosicionable.cs" />
+    <Compile Include="Interfaces\IReino.cs" />
+    <Compile Include="Interfaces\ITerreno.cs" />
+    <Compile Include="Model\Dado.cs" />
+    <Compile Include="Model\EstrategiaConCantidad.cs" />
+    <Compile Include="Model\Habitads\HabitadAcuatico.cs" />
+    <Compile Include="Model\Habitads\HabitadAereo.cs" />
+    <Compile Include="Model\Habitads\HabitadTerrestre.cs" />
+    <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\Items\Buenos\SumEnergia.cs" />
+    <Compile Include="Model\Items\Buenos\SumVida.cs" />
+    <Compile Include="Model\Items\Malos\RestEnergia.cs" />
+    <Compile Include="Model\Items\Malos\RestVida.cs" />
+    <Compile Include="Model\Mapa.cs" />
+    <Compile Include="Model\Reinos\ReinoAstral.cs" />
+    <Compile Include="Model\Reinos\ReinoMaquina.cs" />
+    <Compile Include="Model\Terreno.cs" />
+    <Compile Include="Model\Terrenos\TerrenoAgua.cs" />
+    <Compile Include="Model\Reinos\ReinoAnimal.cs" />
+    <Compile Include="Model\Dietas\DietCarnivoro.cs" />
+    <Compile Include="Model\Comida.cs" />
+    <Compile Include="Model\Criatura.cs" />
+    <Compile Include="Model\Terrenos\TerrenoAire.cs" />
+    <Compile Include="Model\Terrenos\TerrenoTierra.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormComida.resx">
+      <DependentUpon>FormComida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCriatura.resx">
+      <DependentUpon>FormCriatura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGame.resx">
+      <DependentUpon>FormGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdmin.resx">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormIndex.resx">
+      <DependentUpon>FormIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItem.resx">
+      <DependentUpon>FormItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormItemPrueba.resx">
+      <DependentUpon>FormItemPrueba.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPelea.resx">
+      <DependentUpon>FormPelea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Img\agua.png" />
+    <Content Include="Img\aire.png" />
+    <Content Include="Img\ataque.png" />
+    <Content Include="Img\cocinar.png" />
+    <Content Include="Img\comer.png" />
+    <Content Include="Img\config.png" />
+    <Content Include="Img\creador.png" />
+    <Content Include="Img\crear.png" />
+    <Content Include="Img\defensa.png" />
+    <Content Include="Img\dormir.png" />
+    <Content Include="Img\eclosion.png" />
+    <Content Include="Img\fondoInicio.jpeg" />
+    <Content Include="Img\fuego.png" />
+    <Content Include="Img\Hagua.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Img\Haire.png" />
+    <Content Include="Img\hexagon.png" />
+    <Content Include="Img\Hfuego.png" />
+    <Content Include="Img\Htierra.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Img\start.png" />
+    <Content Include="Img\tierra.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
