@@ -56,146 +56,165 @@
             this.dieta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.habitad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonVolver = new System.Windows.Forms.Button();
+            this.buttonEliminar = new System.Windows.Forms.Button();
+            this.buttonModificar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCriatura)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(635, 50);
+            this.label1.Location = new System.Drawing.Point(476, 41);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 16);
+            this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Criatura";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(231, 115);
+            this.label2.Location = new System.Drawing.Point(173, 93);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 16);
+            this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nombre:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(822, 112);
+            this.label3.Location = new System.Drawing.Point(616, 91);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 16);
+            this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Reino:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(822, 241);
+            this.label4.Location = new System.Drawing.Point(616, 196);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 16);
+            this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Habitad:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(826, 183);
+            this.label5.Location = new System.Drawing.Point(620, 149);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 16);
+            this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "Dieta:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(231, 180);
+            this.label6.Location = new System.Drawing.Point(173, 146);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 16);
+            this.label6.Size = new System.Drawing.Size(46, 13);
             this.label6.TabIndex = 5;
             this.label6.Text = "Energia:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(231, 235);
+            this.label7.Location = new System.Drawing.Point(173, 191);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 16);
+            this.label7.Size = new System.Drawing.Size(31, 13);
             this.label7.TabIndex = 6;
             this.label7.Text = "Vida:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(231, 284);
+            this.label8.Location = new System.Drawing.Point(173, 231);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 16);
+            this.label8.Size = new System.Drawing.Size(44, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "Ataque:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(231, 334);
+            this.label9.Location = new System.Drawing.Point(173, 271);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 16);
+            this.label9.Size = new System.Drawing.Size(50, 13);
             this.label9.TabIndex = 8;
             this.label9.Text = "Defensa:";
             // 
             // textNomb
             // 
-            this.textNomb.Location = new System.Drawing.Point(343, 115);
+            this.textNomb.Location = new System.Drawing.Point(257, 93);
+            this.textNomb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textNomb.Name = "textNomb";
-            this.textNomb.Size = new System.Drawing.Size(158, 22);
+            this.textNomb.Size = new System.Drawing.Size(120, 20);
             this.textNomb.TabIndex = 9;
             // 
             // comboReino
             // 
             this.comboReino.FormattingEnabled = true;
-            this.comboReino.Location = new System.Drawing.Point(916, 112);
+            this.comboReino.Location = new System.Drawing.Point(687, 91);
+            this.comboReino.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboReino.Name = "comboReino";
-            this.comboReino.Size = new System.Drawing.Size(158, 24);
+            this.comboReino.Size = new System.Drawing.Size(120, 21);
             this.comboReino.TabIndex = 10;
             // 
             // comboDiet
             // 
             this.comboDiet.FormattingEnabled = true;
-            this.comboDiet.Location = new System.Drawing.Point(916, 180);
+            this.comboDiet.Location = new System.Drawing.Point(687, 146);
+            this.comboDiet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboDiet.Name = "comboDiet";
-            this.comboDiet.Size = new System.Drawing.Size(158, 24);
+            this.comboDiet.Size = new System.Drawing.Size(120, 21);
             this.comboDiet.TabIndex = 11;
             // 
             // textEnerg
             // 
-            this.textEnerg.Location = new System.Drawing.Point(343, 180);
+            this.textEnerg.Location = new System.Drawing.Point(257, 146);
+            this.textEnerg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textEnerg.Name = "textEnerg";
-            this.textEnerg.Size = new System.Drawing.Size(158, 22);
+            this.textEnerg.Size = new System.Drawing.Size(120, 20);
             this.textEnerg.TabIndex = 12;
             // 
             // textVida
             // 
-            this.textVida.Location = new System.Drawing.Point(343, 235);
+            this.textVida.Location = new System.Drawing.Point(257, 191);
+            this.textVida.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textVida.Name = "textVida";
-            this.textVida.Size = new System.Drawing.Size(158, 22);
+            this.textVida.Size = new System.Drawing.Size(120, 20);
             this.textVida.TabIndex = 13;
             // 
             // textAtaq
             // 
-            this.textAtaq.Location = new System.Drawing.Point(343, 284);
+            this.textAtaq.Location = new System.Drawing.Point(257, 231);
+            this.textAtaq.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textAtaq.Name = "textAtaq";
-            this.textAtaq.Size = new System.Drawing.Size(158, 22);
+            this.textAtaq.Size = new System.Drawing.Size(120, 20);
             this.textAtaq.TabIndex = 14;
             // 
             // textDef
             // 
-            this.textDef.Location = new System.Drawing.Point(343, 334);
+            this.textDef.Location = new System.Drawing.Point(257, 271);
+            this.textDef.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textDef.Name = "textDef";
-            this.textDef.Size = new System.Drawing.Size(158, 22);
+            this.textDef.Size = new System.Drawing.Size(120, 20);
             this.textDef.TabIndex = 15;
             // 
             // buttonCrear
             // 
-            this.buttonCrear.Location = new System.Drawing.Point(489, 424);
+            this.buttonCrear.Location = new System.Drawing.Point(367, 344);
+            this.buttonCrear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonCrear.Name = "buttonCrear";
-            this.buttonCrear.Size = new System.Drawing.Size(75, 23);
+            this.buttonCrear.Size = new System.Drawing.Size(56, 19);
             this.buttonCrear.TabIndex = 16;
             this.buttonCrear.Text = "Crear";
             this.buttonCrear.UseVisualStyleBackColor = true;
@@ -204,9 +223,10 @@
             // checkedListHabitad
             // 
             this.checkedListHabitad.FormattingEnabled = true;
-            this.checkedListHabitad.Location = new System.Drawing.Point(916, 241);
+            this.checkedListHabitad.Location = new System.Drawing.Point(687, 196);
+            this.checkedListHabitad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkedListHabitad.Name = "checkedListHabitad";
-            this.checkedListHabitad.Size = new System.Drawing.Size(158, 140);
+            this.checkedListHabitad.Size = new System.Drawing.Size(120, 109);
             this.checkedListHabitad.TabIndex = 17;
             // 
             // dataGridCriatura
@@ -221,11 +241,12 @@
             this.reino,
             this.dieta,
             this.habitad});
-            this.dataGridCriatura.Location = new System.Drawing.Point(135, 478);
+            this.dataGridCriatura.Location = new System.Drawing.Point(101, 388);
+            this.dataGridCriatura.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridCriatura.Name = "dataGridCriatura";
             this.dataGridCriatura.RowHeadersWidth = 51;
             this.dataGridCriatura.RowTemplate.Height = 24;
-            this.dataGridCriatura.Size = new System.Drawing.Size(1165, 150);
+            this.dataGridCriatura.Size = new System.Drawing.Size(874, 122);
             this.dataGridCriatura.TabIndex = 18;
             // 
             // nombre
@@ -286,19 +307,42 @@
             // 
             // buttonVolver
             // 
-            this.buttonVolver.Location = new System.Drawing.Point(638, 424);
+            this.buttonVolver.Location = new System.Drawing.Point(478, 344);
+            this.buttonVolver.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonVolver.Name = "buttonVolver";
-            this.buttonVolver.Size = new System.Drawing.Size(75, 23);
+            this.buttonVolver.Size = new System.Drawing.Size(56, 19);
             this.buttonVolver.TabIndex = 20;
             this.buttonVolver.Text = "Volver";
             this.buttonVolver.UseVisualStyleBackColor = true;
             this.buttonVolver.Click += new System.EventHandler(this.ButtonVolver_Click);
             // 
+            // buttonEliminar
+            // 
+            this.buttonEliminar.Location = new System.Drawing.Point(579, 340);
+            this.buttonEliminar.Name = "buttonEliminar";
+            this.buttonEliminar.Size = new System.Drawing.Size(75, 23);
+            this.buttonEliminar.TabIndex = 21;
+            this.buttonEliminar.Text = "Eliminar";
+            this.buttonEliminar.UseVisualStyleBackColor = true;
+            this.buttonEliminar.Click += new System.EventHandler(this.ButtonEliminar_Click);
+            // 
+            // buttonModificar
+            // 
+            this.buttonModificar.Location = new System.Drawing.Point(699, 342);
+            this.buttonModificar.Name = "buttonModificar";
+            this.buttonModificar.Size = new System.Drawing.Size(75, 23);
+            this.buttonModificar.TabIndex = 22;
+            this.buttonModificar.Text = "Modificar";
+            this.buttonModificar.UseVisualStyleBackColor = true;
+            this.buttonModificar.Click += new System.EventHandler(this.ButtonModificar_Click);
+            // 
             // FormCriatura
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 719);
+            this.ClientSize = new System.Drawing.Size(1028, 584);
+            this.Controls.Add(this.buttonModificar);
+            this.Controls.Add(this.buttonEliminar);
             this.Controls.Add(this.buttonVolver);
             this.Controls.Add(this.dataGridCriatura);
             this.Controls.Add(this.checkedListHabitad);
@@ -319,6 +363,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormCriatura";
             this.Text = "FormCriatura";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCriatura)).EndInit();
@@ -357,5 +402,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dieta;
         private System.Windows.Forms.DataGridViewTextBoxColumn habitad;
         private System.Windows.Forms.Button buttonVolver;
+        private System.Windows.Forms.Button buttonEliminar;
+        private System.Windows.Forms.Button buttonModificar;
     }
 }

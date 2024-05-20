@@ -21,15 +21,22 @@ namespace Fdsmlfr.Controllers
             }
             return Instance;
         }
-        public void CreateCriatura(string Nombre, IDieta Dieta, int MaxEnergia, int MaxVida, int PntAtack, int PntDef, IReino Reino, List<IHabitad> Habitads) 
+
+        public void CreateCriatura(string Nombre, IDieta Dieta, int MaxEnergia, int MaxVida, int PntAtack, int PntDef, IReino Reino, List<IHabitad> Habitads)
         {
             ListCriaturas.Add(new Criatura(Nombre, Dieta, MaxEnergia, MaxVida, PntAtack, PntDef, Reino, Habitads));
         }
-        
-        public List<Criatura> GetCriaturasList() 
+
+        public List<Criatura> GetCriaturasList()
         {
             return ListCriaturas;
         }
+
+        public void EliminarCriatura(Criatura criatura)
+        {
+            ListCriaturas.Remove(criatura);
+        }
+
         public void CriaturasPrecargadas()
         {
             List<IHabitad> habitadsCriatura1 = new List<IHabitad> { new HabitadAcuatico(), new HabitadAereo() };
@@ -39,6 +46,5 @@ namespace Fdsmlfr.Controllers
             List<IHabitad> habitadsCriatura3 = new List<IHabitad> { new HabitadAereo() };
             CreateCriatura("Lord Valdomero", new DietCarnivoro(), 100, 100, 20, 20, new ReinoAnimal(), habitadsCriatura3);
         }
-        //Aplicamos una lista predefinida con criaturas, lo mismo items
     }
 }

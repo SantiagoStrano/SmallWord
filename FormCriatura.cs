@@ -20,6 +20,8 @@ namespace Fdsmlfr
         ReinoController cntrlReino = ReinoController.GetInstance();
         CriaturaController cntrCriatura = CriaturaController.GetInstace();
 
+        private Criatura criaturaSeleccionada;
+
         public FormCriatura()
         {
             InitializeComponent();
@@ -49,15 +51,32 @@ namespace Fdsmlfr
                 habitatsSeleccionados.Add((IHabitad)item);
             }
 
-            cntrCriatura.CreateCriatura(textNomb.Text,
-                (IDieta)comboDiet.SelectedItem,
-                int.Parse(textEnerg.Text),
-                int.Parse(textVida.Text),
-                int.Parse(textAtaq.Text),
-                int.Parse(textDef.Text),
-                (IReino)comboReino.SelectedItem,
-                habitatsSeleccionados);
+            if (criaturaSeleccionada == null)
+            {
+                cntrCriatura.CreateCriatura(textNomb.Text,
+                    (IDieta)comboDiet.SelectedItem,
+                    int.Parse(textEnerg.Text),
+                    int.Parse(textVida.Text),
+                    int.Parse(textAtaq.Text),
+                    int.Parse(textDef.Text),
+                    (IReino)comboReino.SelectedItem,
+                    habitatsSeleccionados);
+            }
+            else
+            {
+                criaturaSeleccionada.Nombre = textNomb.Text;
+                criaturaSeleccionada.Dieta = (IDieta)comboDiet.SelectedItem;
+                criaturaSeleccionada.MaxEnergia = int.Parse(textEnerg.Text);
+                criaturaSeleccionada.Energia = int.Parse(textEnerg.Text);
+                criaturaSeleccionada.MaxVida = int.Parse(textVida.Text);
+                criaturaSeleccionada.Vida = int.Parse(textVida.Text);
+                criaturaSeleccionada.PntAtack = int.Parse(textAtaq.Text);
+                criaturaSeleccionada.PntDef = int.Parse(textDef.Text);
+                criaturaSeleccionada.Reino = (IReino)comboReino.SelectedItem;
+                criaturaSeleccionada.Habitads = habitatsSeleccionados;
+            }
 
+            LimpiarControles();
             CargarCriaturas();
         }
 
@@ -66,20 +85,22 @@ namespace Fdsmlfr
             List<Criatura> listCriatura = cntrCriatura.GetCriaturasList();
             dataGridCriatura.Rows.Clear();
 
-            foreach (var Criatura in listCriatura)
+            foreach (var criatura in listCriatura)
             {
                 DataGridViewRow row = new DataGridViewRow();
                 row.CreateCells(dataGridCriatura);
-                row.Cells[0].Value = Criatura.Nombre;
-                row.Cells[1].Value = Criatura.Energia;
-                row.Cells[2].Value = Criatura.Vida;
-                row.Cells[3].Value = Criatura.PntAtack;
-                row.Cells[4].Value = Criatura.PntDef;
-                row.Cells[5].Value = Criatura.Reino.ToString();
-                row.Cells[6].Value = Criatura.Dieta.ToString();
+                row.Cells[0].Value = criatura.Nombre;
+                row.Cells[1].Value = criatura.Energia;
+                row.Cells[2].Value = criatura.Vida;
+                row.Cells[3].Value = criatura.PntAtack;
+                row.Cells[4].Value = criatura.PntDef;
+                row.Cells[5].Value = criatura.Reino.ToString();
+                row.Cells[6].Value = criatura.Dieta.ToString();
 
-                string habitadsString = string.Join(", ", Criatura.Habitads.Select(h => h.ToString()));
+                string habitadsString = string.Join(", ", criatura.Habitads.Select(h => h.ToString()));
                 row.Cells[7].Value = habitadsString;
+
+                row.Tag = criatura; // Asociar la criatura con la fila
 
                 dataGridCriatura.Rows.Add(row);
             }
@@ -90,6 +111,65 @@ namespace Fdsmlfr
             this.Close();
             FormAdmin formHome = new FormAdmin();
             formHome.Show();
+        }
+
+        private void ButtonEliminar_Click(object sender, EventArgs e)
+        {
+            if (dataGridCriatura.SelectedRows.Count > 0)
+            {
+                Criatura criaturaSeleccionada = (Criatura)dataGridCriatura.SelectedRows[0].Tag;
+                cntrCriatura.EliminarCriatura(criaturaSeleccionada);
+                CargarCriaturas();
+            }
+        }
+
+        private void ButtonModificar_Click(object sender, EventArgs e)
+        {
+            if (dataGridCriatura.SelectedRows.Count > 0)
+            {
+                criaturaSeleccionada = (Criatura)dataGridCriatura.SelectedRows[0].Tag;
+                textNomb.Text = criaturaSeleccionada.Nombre;
+                comboDiet.SelectedItem = criaturaSeleccionada.Dieta;
+                textEnerg.Text = criaturaSeleccionada.MaxEnergia.ToString();
+                textVida.Text = criaturaSeleccionada.MaxVida.ToString();
+                textAtaq.Text = criaturaSeleccionada.PntAtack.ToString();
+                textDef.Text = criaturaSeleccionada.PntDef.ToString();
+                comboReino.SelectedItem = criaturaSeleccionada.Reino;
+
+                for (int i = 0; i < checkedListHabitad.Items.Count; i++)
+                {
+                    checkedListHabitad.SetItemChecked(i, false); // Desmarcar todos
+                }
+
+                foreach (var habitad in criaturaSeleccionada.Habitads)
+                {
+                    for (int i = 0; i < checkedListHabitad.Items.Count; i++)
+                    {
+                        if (checkedListHabitad.Items[i].ToString() == habitad.ToString())
+                        {
+                            checkedListHabitad.SetItemChecked(i, true);
+                        }
+                    }
+                }
+
+                dataGridCriatura.Rows.RemoveAt(dataGridCriatura.SelectedRows[0].Index); // Eliminar la fila del DataGridView
+            }
+        }
+
+        private void LimpiarControles()
+        {
+            textNomb.Clear();
+            comboDiet.SelectedIndex = 0;
+            textEnerg.Clear();
+            textVida.Clear();
+            textAtaq.Clear();
+            textDef.Clear();
+            comboReino.SelectedIndex = 0;
+            for (int i = 0; i < checkedListHabitad.Items.Count; i++)
+            {
+                checkedListHabitad.SetItemChecked(i, false);
+            }
+            criaturaSeleccionada = null;
         }
     }
 }
