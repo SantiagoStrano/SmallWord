@@ -36,6 +36,7 @@
             this.buttonUsarItem = new System.Windows.Forms.Button();
             this.buttonVolver = new System.Windows.Forms.Button();
             this.pictureBoxAdmin = new System.Windows.Forms.PictureBox();
+            this.buttonComer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAdmin)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,10 +87,18 @@
             this.pictureBoxAdmin.Name = "pictureBoxAdmin";
             this.pictureBoxAdmin.TabStop = false;
             // 
+            // buttonComer
+            // 
+            resources.ApplyResources(this.buttonComer, "buttonComer");
+            this.buttonComer.Name = "buttonComer";
+            this.buttonComer.UseVisualStyleBackColor = true;
+            this.buttonComer.Click += new System.EventHandler(this.buttonComer_Click);
+            // 
             // FormAdmin
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonComer);
             this.Controls.Add(this.pictureBoxAdmin);
             this.Controls.Add(this.buttonVolver);
             this.Controls.Add(this.buttonUsarItem);
@@ -112,5 +121,6 @@
         private System.Windows.Forms.Button buttonUsarItem;
         private System.Windows.Forms.Button buttonVolver;
         private System.Windows.Forms.PictureBox pictureBoxAdmin;
+        private System.Windows.Forms.Button buttonComer;
     }
 }

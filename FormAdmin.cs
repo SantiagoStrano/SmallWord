@@ -58,5 +58,11 @@ namespace Fdsmlfr
             FormGame formGame = new FormGame();
             formGame.Show();
         }
+
+        private void buttonComer_Click(object sender, EventArgs e)
+        {
+            FormComidaPrueba formComidaPrueba = new FormComidaPrueba();
+            formComidaPrueba.Show();
+        }
     }
 }

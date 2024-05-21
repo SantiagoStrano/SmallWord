@@ -63,6 +63,12 @@
     <Compile Include="FormComida.Designer.cs">
       <DependentUpon>FormComida.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormComidaPrueba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComidaPrueba.Designer.cs">
+      <DependentUpon>FormComidaPrueba.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCriatura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,8 @@
     <Compile Include="Interfaces\IReino.cs" />
     <Compile Include="Interfaces\ITerreno.cs" />
     <Compile Include="Model\Dado.cs" />
+    <Compile Include="Model\Dietas\DietOmnivoro.cs" />
+    <Compile Include="Model\Dietas\DietVegetariano.cs" />
     <Compile Include="Model\EstrategiaConCantidad.cs" />
     <Compile Include="Model\Habitads\HabitadAcuatico.cs" />
     <Compile Include="Model\Habitads\HabitadAereo.cs" />
@@ -140,6 +148,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormComida.resx">
       <DependentUpon>FormComida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormComidaPrueba.resx">
+      <DependentUpon>FormComidaPrueba.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCriatura.resx">
       <DependentUpon>FormCriatura.cs</DependentUpon>

@@ -26,9 +26,15 @@ namespace Fdsmlfr.Model
             Dieta = dieta;
         }
 
+        public override string ToString()
+        {
+            return Nombre;
+        }
+
         public void Interactuar(Criatura criatura)
         {
             throw new NotImplementedException();
         }
+
     }
 }

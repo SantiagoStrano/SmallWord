@@ -74,3 +74,4 @@ C:\Users\Due\Desktop\SmallWord-main\obj\Debug\Fdsmlfr.csproj.GenerateResource.ca
 C:\Users\Due\Desktop\SmallWord-main\obj\Debug\Fdsmlfr.csproj.CoreCompileInputs.cache
 C:\Users\Due\Desktop\SmallWord-main\obj\Debug\Fdsmlfr.exe
 C:\Users\Due\Desktop\SmallWord-main\obj\Debug\Fdsmlfr.pdb
+C:\Users\Due\Desktop\SmallWord-main\obj\Debug\Fdsmlfr.FormComidaPrueba.resources

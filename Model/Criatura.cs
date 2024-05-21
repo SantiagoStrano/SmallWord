@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Fdsmlfr.Controllers;
 using Fdsmlfr.Interfaces;
 
+
 namespace Fdsmlfr.Model
 {
     public class Criatura: ICriatura
@@ -146,7 +147,7 @@ namespace Fdsmlfr.Model
             }
             return Result;
         }
-
+        
         public bool PuedePasarPorTerreno(ITerreno terreno)
         {
             foreach (var habitad in Habitads)
@@ -158,10 +159,25 @@ namespace Fdsmlfr.Model
             }
             return false;
         }
-        /*
-        public void Morir()
+
+        void ICriatura.Comer(Comida comida)
         {
-            CriaturaController.GetInstance().EliminarCriatura(this);
-        }*/
+            if (Dieta.CanEat(comida))
+            {
+                Random random = new Random();
+                int energiaRecuperada = random.Next(20, 31); // Recupera entre 20 y 30 de energía
+                SetEnergiaPlus(energiaRecuperada);
+                MessageBox.Show($"{Nombre} ha comido {comida.Nombre} y ha ganado {energiaRecuperada} de energía.");
+            }
+            else
+            {
+                MessageBox.Show($"{Nombre} no puede comer {comida.Nombre} porque no es compatible con su dieta.");
+            }
+        }
+        /*
+public void Morir()
+{
+   CriaturaController.GetInstance().EliminarCriatura(this);
+}*/
     }
 }

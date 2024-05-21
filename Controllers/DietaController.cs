@@ -1,5 +1,6 @@
 ﻿using Fdsmlfr.Interfaces;
 using Fdsmlfr.Model;
+using Fdsmlfr.Model.Dietas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,9 @@ namespace Fdsmlfr.Controllers
         {
             List<IDieta> listaDietas = new List<IDieta>
             {
-                new DietCarnivoro()
+                new DietCarnivoro(),
+                
+                new DietVegetariano()
             };
             return listaDietas;
         }

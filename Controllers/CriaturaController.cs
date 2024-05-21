@@ -1,5 +1,6 @@
 ﻿using Fdsmlfr.Interfaces;
 using Fdsmlfr.Model;
+using Fdsmlfr.Model.Dietas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace Fdsmlfr.Controllers
         public void CriaturasPrecargadas()
         {
             List<IHabitad> habitadsCriatura1 = new List<IHabitad> { new HabitadAcuatico(), new HabitadAereo() };
-            CreateCriatura("Milaneso", new DietCarnivoro(), 100, 100, 10, 20, new ReinoAnimal(), habitadsCriatura1);
+            CreateCriatura("Milaneso", new DietVegetariano(), 100, 100, 10, 20, new ReinoAnimal(), habitadsCriatura1);
             List<IHabitad> habitadsCriatura2 = new List<IHabitad> { new HabitadAcuatico(), new HabitadTerrestre() };
             CreateCriatura("El Mike", new DietCarnivoro(), 100, 100, 20, 10, new ReinoAnimal(), habitadsCriatura2);
             List<IHabitad> habitadsCriatura3 = new List<IHabitad> { new HabitadAereo() };

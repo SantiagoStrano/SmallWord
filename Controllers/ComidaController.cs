@@ -32,5 +32,9 @@ namespace Fdsmlfr.Controllers
             return ListComida;
         }
         
+        public void EliminarComida(Comida comida) 
+        { 
+            ListComida.Remove(comida);
+        }
     }
 }

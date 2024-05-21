@@ -8,6 +8,6 @@ namespace Fdsmlfr.Interfaces
 {
     public interface IDieta
     {
-        //bool CanEat(IInteractuable comida);
+        bool CanEat(IInteractuable food);
     }
 }

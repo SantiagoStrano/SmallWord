@@ -9,7 +9,7 @@ namespace Fdsmlfr.Interfaces
 {
     internal interface ICriatura
     {
-        //void Comer();
+        void Comer(Comida comida);
         void Dormir();
         //void Moverse();
         
