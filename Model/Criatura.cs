@@ -54,6 +54,10 @@ namespace Fdsmlfr.Model
            
         }
 
+        public Criatura Clone()
+        {
+            return new Criatura(Nombre, Dieta, MaxEnergia, MaxVida, PntAtack, PntDef, Reino, new List<IHabitad>(Habitads));
+        }
         public void Dormir()
         {
             Energia += 30;

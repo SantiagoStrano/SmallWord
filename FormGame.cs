@@ -17,35 +17,49 @@ namespace Fdsmlfr
     {
         private List<PictureBox> pictureBoxes;
         private List<Terreno> terrenos;
+        private List<Criatura> criaturasOriginales;
+        private List<Comida> comidasOriginales;
+        private List<Item> itemsOriginales;
         private List<Criatura> criaturasDisponibles;
         private List<IInteractuable> interactuablesDisponibles;
-        private Random random; // Nueva instancia de Random
-
+        private Random random;
 
         public FormGame()
         {
             InitializeComponent();
             pictureBoxes = new List<PictureBox> { Hexagon1, Hexagon2, Hexagon3, Hexagon4, Hexagon5, Hexagon6, Hexagon7 };
             terrenos = new List<Terreno>();
-            random = new Random(); // Inicializa Random
+            random = new Random();
 
-            // Inicializa las listas de criaturas e interactuables disponibles
-            criaturasDisponibles = CriaturaController.GetInstace().GetCriaturasList();
-            interactuablesDisponibles = new List<IInteractuable>();
-            interactuablesDisponibles.AddRange(ItemController.GetInstance().GetItemList());
-            interactuablesDisponibles.AddRange(ComidaController.GetInstace().GetComidaList());
+            // Cargar listas originales
+            criaturasOriginales = CriaturaController.GetInstace().GetCriaturasList();
+            comidasOriginales = ComidaController.GetInstace().GetComidaList();
+            itemsOriginales = ItemController.GetInstance().GetItemList();
+
+            // Inicializar listas disponibles a partir de las originales
+            ResetDisponibles();
 
             // Configurar el ComboBox de criaturas
-            comboBoxCriaturas.DisplayMember = "Nombre"; // Mostrar el nombre de la criatura
-            comboBoxCriaturas.DataSource = criaturasDisponibles; // Asociar la lista de criaturas al ComboBox
+            comboBoxCriaturas.DisplayMember = "Nombre";
+            comboBoxCriaturas.DataSource = criaturasDisponibles;
 
             InicializarTerrenos();
+        }
 
-
+        private void ResetDisponibles()
+        {
+            criaturasDisponibles = new List<Criatura>(criaturasOriginales);
+            interactuablesDisponibles = new List<IInteractuable>();
+            interactuablesDisponibles.AddRange(comidasOriginales);
+            interactuablesDisponibles.AddRange(itemsOriginales);
         }
 
         private void InicializarTerrenos()
         {
+            // Reinicializar terrenos y listas disponibles
+            terrenos.Clear();
+            ResetDisponibles();
+
             foreach (PictureBox pictureBox in pictureBoxes)
             {
                 ITerreno tipoTerreno = random.Next(2) == 0 ? (ITerreno)new TerrenoAgua() : (ITerreno)new TerrenoTierra();
@@ -55,12 +69,18 @@ namespace Fdsmlfr
                 if (tipoTerreno is TerrenoTierra)
                 {
                     Criatura criaturaAleatoria = GetCriaturaAleatoria();
-                    terreno.Criaturas.Add(criaturaAleatoria);
+                    if (criaturaAleatoria != null)
+                    {
+                        terreno.Criaturas.Add(criaturaAleatoria);
+                    }
                 }
 
                 // Coloca un interactuable aleatorio en el terreno
                 IInteractuable interactuableAleatorio = GetInteractuableAleatorio();
-                terreno.Interactuables.Add(interactuableAleatorio);
+                if (interactuableAleatorio != null)
+                {
+                    terreno.Interactuables.Add(interactuableAleatorio);
+                }
 
                 terrenos.Add(terreno);
                 pictureBox.Image = tipoTerreno.GetImage();
@@ -69,24 +89,23 @@ namespace Fdsmlfr
 
         private Criatura GetCriaturaAleatoria()
         {
-            Criatura criatura = null;
             if (criaturasDisponibles.Count > 0)
             {
-                criatura = criaturasDisponibles[0];
-                criaturasDisponibles.RemoveAt(0); // Eliminar la criatura de la lista de disponibles
+                int index = random.Next(criaturasDisponibles.Count);
+                Criatura criatura = criaturasDisponibles[index];
+                criaturasDisponibles.RemoveAt(index);
+                return criatura;
             }
-            return criatura;
+            return null;
         }
 
         private IInteractuable GetInteractuableAleatorio()
         {
-            Random random = new Random();
-            int totalInteractuables = interactuablesDisponibles.Count;
-            if (totalInteractuables > 0)
+            if (interactuablesDisponibles.Count > 0)
             {
-                int index = random.Next(totalInteractuables);
+                int index = random.Next(interactuablesDisponibles.Count);
                 IInteractuable interactuable = interactuablesDisponibles[index];
-                interactuablesDisponibles.RemoveAt(index); // Eliminar el interactuable de la lista de disponibles
+                interactuablesDisponibles.RemoveAt(index);
                 return interactuable;
             }
             return null;
@@ -151,7 +170,7 @@ namespace Fdsmlfr
                 textBoxDefensa.Text = criaturaSeleccionada.PntDef.ToString();
             }
         }
-    }
 
+    }
 }
 

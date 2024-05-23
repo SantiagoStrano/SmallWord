@@ -25,7 +25,10 @@ namespace Fdsmlfr.Model
             Nombre = nombre;
             Dieta = dieta;
         }
-
+        public Comida Clone()
+        {
+            return new Comida(Nombre, Dieta);
+        }
         public override string ToString()
         {
             return Nombre;
