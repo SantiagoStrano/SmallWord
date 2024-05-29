@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Fdsmlfr.Model
 {
-    internal class Terreno
+    public class Terreno
     {
         //private static int ContID = 0;
         //public int Id { get; private set; }

@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.panelMap = new System.Windows.Forms.Panel();
+            this.Hexagon6 = new System.Windows.Forms.PictureBox();
+            this.Hexagon5 = new System.Windows.Forms.PictureBox();
+            this.Hexagon7 = new System.Windows.Forms.PictureBox();
+            this.Hexagon4 = new System.Windows.Forms.PictureBox();
+            this.Hexagon2 = new System.Windows.Forms.PictureBox();
+            this.Hexagon3 = new System.Windows.Forms.PictureBox();
+            this.Hexagon1 = new System.Windows.Forms.PictureBox();
             this.panelCriatura = new System.Windows.Forms.Panel();
             this.textBoxDefensa = new System.Windows.Forms.TextBox();
             this.textBoxAtaque = new System.Windows.Forms.TextBox();
@@ -51,19 +58,8 @@
             this.dataGridViewComidas = new System.Windows.Forms.DataGridView();
             this.ColumnNombreComida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDieta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hexagon6 = new System.Windows.Forms.PictureBox();
-            this.Hexagon5 = new System.Windows.Forms.PictureBox();
-            this.Hexagon7 = new System.Windows.Forms.PictureBox();
-            this.Hexagon4 = new System.Windows.Forms.PictureBox();
-            this.Hexagon2 = new System.Windows.Forms.PictureBox();
-            this.Hexagon3 = new System.Windows.Forms.PictureBox();
-            this.Hexagon1 = new System.Windows.Forms.PictureBox();
+            this.buttonMover = new System.Windows.Forms.Button();
             this.panelMap.SuspendLayout();
-            this.panelCriatura.SuspendLayout();
-            this.panelElementos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriaturas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hexagon6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hexagon5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hexagon7)).BeginInit();
@@ -71,6 +67,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.Hexagon2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hexagon3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hexagon1)).BeginInit();
+            this.panelCriatura.SuspendLayout();
+            this.panelElementos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriaturas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComidas)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMap
@@ -82,10 +83,102 @@
             this.panelMap.Controls.Add(this.Hexagon2);
             this.panelMap.Controls.Add(this.Hexagon3);
             this.panelMap.Controls.Add(this.Hexagon1);
-            this.panelMap.Location = new System.Drawing.Point(12, 48);
+            this.panelMap.Location = new System.Drawing.Point(9, 39);
+            this.panelMap.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelMap.Name = "panelMap";
-            this.panelMap.Size = new System.Drawing.Size(290, 390);
+            this.panelMap.Size = new System.Drawing.Size(218, 317);
             this.panelMap.TabIndex = 0;
+            // 
+            // Hexagon6
+            // 
+            this.Hexagon6.BackColor = System.Drawing.Color.Transparent;
+            this.Hexagon6.Image = global::Fdsmlfr.Properties.Resources.hexagon;
+            this.Hexagon6.Location = new System.Drawing.Point(5, 118);
+            this.Hexagon6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Hexagon6.Name = "Hexagon6";
+            this.Hexagon6.Size = new System.Drawing.Size(59, 46);
+            this.Hexagon6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Hexagon6.TabIndex = 6;
+            this.Hexagon6.TabStop = false;
+            this.Hexagon6.Click += new System.EventHandler(this.Terreno_Click);
+            // 
+            // Hexagon5
+            // 
+            this.Hexagon5.BackColor = System.Drawing.Color.Transparent;
+            this.Hexagon5.Image = global::Fdsmlfr.Properties.Resources.hexagon;
+            this.Hexagon5.Location = new System.Drawing.Point(3, 202);
+            this.Hexagon5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Hexagon5.Name = "Hexagon5";
+            this.Hexagon5.Size = new System.Drawing.Size(59, 46);
+            this.Hexagon5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Hexagon5.TabIndex = 5;
+            this.Hexagon5.TabStop = false;
+            this.Hexagon5.Click += new System.EventHandler(this.Terreno_Click);
+            // 
+            // Hexagon7
+            // 
+            this.Hexagon7.BackColor = System.Drawing.Color.Transparent;
+            this.Hexagon7.Image = global::Fdsmlfr.Properties.Resources.hexagon;
+            this.Hexagon7.Location = new System.Drawing.Point(69, 77);
+            this.Hexagon7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Hexagon7.Name = "Hexagon7";
+            this.Hexagon7.Size = new System.Drawing.Size(59, 46);
+            this.Hexagon7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Hexagon7.TabIndex = 4;
+            this.Hexagon7.TabStop = false;
+            this.Hexagon7.Click += new System.EventHandler(this.Terreno_Click);
+            // 
+            // Hexagon4
+            // 
+            this.Hexagon4.BackColor = System.Drawing.Color.Transparent;
+            this.Hexagon4.Image = global::Fdsmlfr.Properties.Resources.hexagon;
+            this.Hexagon4.Location = new System.Drawing.Point(69, 241);
+            this.Hexagon4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Hexagon4.Name = "Hexagon4";
+            this.Hexagon4.Size = new System.Drawing.Size(59, 46);
+            this.Hexagon4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Hexagon4.TabIndex = 3;
+            this.Hexagon4.TabStop = false;
+            this.Hexagon4.Click += new System.EventHandler(this.Terreno_Click);
+            // 
+            // Hexagon2
+            // 
+            this.Hexagon2.BackColor = System.Drawing.Color.Transparent;
+            this.Hexagon2.Image = global::Fdsmlfr.Properties.Resources.hexagon;
+            this.Hexagon2.Location = new System.Drawing.Point(133, 118);
+            this.Hexagon2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Hexagon2.Name = "Hexagon2";
+            this.Hexagon2.Size = new System.Drawing.Size(59, 46);
+            this.Hexagon2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Hexagon2.TabIndex = 2;
+            this.Hexagon2.TabStop = false;
+            this.Hexagon2.Click += new System.EventHandler(this.Terreno_Click);
+            // 
+            // Hexagon3
+            // 
+            this.Hexagon3.BackColor = System.Drawing.Color.Transparent;
+            this.Hexagon3.Image = global::Fdsmlfr.Properties.Resources.hexagon;
+            this.Hexagon3.Location = new System.Drawing.Point(133, 210);
+            this.Hexagon3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Hexagon3.Name = "Hexagon3";
+            this.Hexagon3.Size = new System.Drawing.Size(59, 46);
+            this.Hexagon3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Hexagon3.TabIndex = 1;
+            this.Hexagon3.TabStop = false;
+            this.Hexagon3.Click += new System.EventHandler(this.Terreno_Click);
+            // 
+            // Hexagon1
+            // 
+            this.Hexagon1.BackColor = System.Drawing.Color.Transparent;
+            this.Hexagon1.Image = global::Fdsmlfr.Properties.Resources.hexagon;
+            this.Hexagon1.Location = new System.Drawing.Point(69, 165);
+            this.Hexagon1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Hexagon1.Name = "Hexagon1";
+            this.Hexagon1.Size = new System.Drawing.Size(59, 46);
+            this.Hexagon1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Hexagon1.TabIndex = 0;
+            this.Hexagon1.TabStop = false;
+            this.Hexagon1.Click += new System.EventHandler(this.Terreno_Click);
             // 
             // panelCriatura
             // 
@@ -99,103 +192,116 @@
             this.panelCriatura.Controls.Add(this.label3);
             this.panelCriatura.Controls.Add(this.comboBoxCriaturas);
             this.panelCriatura.Controls.Add(this.label1);
-            this.panelCriatura.Location = new System.Drawing.Point(340, 71);
+            this.panelCriatura.Location = new System.Drawing.Point(255, 58);
+            this.panelCriatura.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelCriatura.Name = "panelCriatura";
-            this.panelCriatura.Size = new System.Drawing.Size(253, 367);
+            this.panelCriatura.Size = new System.Drawing.Size(190, 298);
             this.panelCriatura.TabIndex = 1;
             // 
             // textBoxDefensa
             // 
-            this.textBoxDefensa.Location = new System.Drawing.Point(75, 269);
+            this.textBoxDefensa.Location = new System.Drawing.Point(56, 219);
+            this.textBoxDefensa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxDefensa.Name = "textBoxDefensa";
-            this.textBoxDefensa.Size = new System.Drawing.Size(161, 22);
+            this.textBoxDefensa.Size = new System.Drawing.Size(122, 20);
             this.textBoxDefensa.TabIndex = 11;
             // 
             // textBoxAtaque
             // 
-            this.textBoxAtaque.Location = new System.Drawing.Point(75, 225);
+            this.textBoxAtaque.Location = new System.Drawing.Point(56, 183);
+            this.textBoxAtaque.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxAtaque.Name = "textBoxAtaque";
-            this.textBoxAtaque.Size = new System.Drawing.Size(161, 22);
+            this.textBoxAtaque.Size = new System.Drawing.Size(122, 20);
             this.textBoxAtaque.TabIndex = 10;
             // 
             // textBoxEnergia
             // 
-            this.textBoxEnergia.Location = new System.Drawing.Point(75, 180);
+            this.textBoxEnergia.Location = new System.Drawing.Point(56, 146);
+            this.textBoxEnergia.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxEnergia.Name = "textBoxEnergia";
-            this.textBoxEnergia.Size = new System.Drawing.Size(161, 22);
+            this.textBoxEnergia.Size = new System.Drawing.Size(122, 20);
             this.textBoxEnergia.TabIndex = 9;
             // 
             // textBoxVida
             // 
-            this.textBoxVida.Location = new System.Drawing.Point(75, 146);
+            this.textBoxVida.Location = new System.Drawing.Point(56, 119);
+            this.textBoxVida.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxVida.Name = "textBoxVida";
-            this.textBoxVida.Size = new System.Drawing.Size(161, 22);
+            this.textBoxVida.Size = new System.Drawing.Size(122, 20);
             this.textBoxVida.TabIndex = 8;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 274);
+            this.label6.Location = new System.Drawing.Point(5, 223);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 16);
+            this.label6.Size = new System.Drawing.Size(50, 13);
             this.label6.TabIndex = 6;
             this.label6.Text = "Defensa:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 225);
+            this.label5.Location = new System.Drawing.Point(5, 183);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 16);
+            this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 5;
             this.label5.Text = "Ataque:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 183);
+            this.label4.Location = new System.Drawing.Point(5, 149);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 16);
+            this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "Energia:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 149);
+            this.label3.Location = new System.Drawing.Point(5, 121);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 16);
+            this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "Vida:";
             // 
             // comboBoxCriaturas
             // 
             this.comboBoxCriaturas.FormattingEnabled = true;
-            this.comboBoxCriaturas.Location = new System.Drawing.Point(75, 82);
+            this.comboBoxCriaturas.Location = new System.Drawing.Point(56, 67);
+            this.comboBoxCriaturas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxCriaturas.Name = "comboBoxCriaturas";
-            this.comboBoxCriaturas.Size = new System.Drawing.Size(161, 24);
+            this.comboBoxCriaturas.Size = new System.Drawing.Size(122, 21);
             this.comboBoxCriaturas.TabIndex = 1;
             this.comboBoxCriaturas.SelectedIndexChanged += new System.EventHandler(this.Criatura_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 85);
+            this.label1.Location = new System.Drawing.Point(2, 69);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 16);
+            this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Criatura";
             // 
             // panelElementos
             // 
+            this.panelElementos.Controls.Add(this.buttonMover);
             this.panelElementos.Controls.Add(this.dataGridViewCriaturas);
             this.panelElementos.Controls.Add(this.buttonUsar);
             this.panelElementos.Controls.Add(this.buttonComer);
             this.panelElementos.Controls.Add(this.dataGridViewItems);
             this.panelElementos.Controls.Add(this.dataGridViewComidas);
-            this.panelElementos.Location = new System.Drawing.Point(625, 71);
+            this.panelElementos.Location = new System.Drawing.Point(469, 58);
+            this.panelElementos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelElementos.Name = "panelElementos";
-            this.panelElementos.Size = new System.Drawing.Size(736, 367);
+            this.panelElementos.Size = new System.Drawing.Size(552, 298);
             this.panelElementos.TabIndex = 2;
             // 
             // dataGridViewCriaturas
@@ -204,11 +310,12 @@
             this.dataGridViewCriaturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnCriatura,
             this.ColumnVida});
-            this.dataGridViewCriaturas.Location = new System.Drawing.Point(16, 225);
+            this.dataGridViewCriaturas.Location = new System.Drawing.Point(12, 183);
+            this.dataGridViewCriaturas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewCriaturas.Name = "dataGridViewCriaturas";
             this.dataGridViewCriaturas.RowHeadersWidth = 51;
             this.dataGridViewCriaturas.RowTemplate.Height = 24;
-            this.dataGridViewCriaturas.Size = new System.Drawing.Size(305, 139);
+            this.dataGridViewCriaturas.Size = new System.Drawing.Size(229, 113);
             this.dataGridViewCriaturas.TabIndex = 4;
             // 
             // ColumnCriatura
@@ -227,18 +334,20 @@
             // 
             // buttonUsar
             // 
-            this.buttonUsar.Location = new System.Drawing.Point(658, 85);
+            this.buttonUsar.Location = new System.Drawing.Point(494, 69);
+            this.buttonUsar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonUsar.Name = "buttonUsar";
-            this.buttonUsar.Size = new System.Drawing.Size(75, 23);
+            this.buttonUsar.Size = new System.Drawing.Size(56, 19);
             this.buttonUsar.TabIndex = 3;
             this.buttonUsar.Text = "Usar";
             this.buttonUsar.UseVisualStyleBackColor = true;
             // 
             // buttonComer
             // 
-            this.buttonComer.Location = new System.Drawing.Point(346, 85);
+            this.buttonComer.Location = new System.Drawing.Point(260, 69);
+            this.buttonComer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonComer.Name = "buttonComer";
-            this.buttonComer.Size = new System.Drawing.Size(75, 23);
+            this.buttonComer.Size = new System.Drawing.Size(56, 19);
             this.buttonComer.TabIndex = 2;
             this.buttonComer.Text = "Comer";
             this.buttonComer.UseVisualStyleBackColor = true;
@@ -248,11 +357,12 @@
             this.dataGridViewItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnItem});
-            this.dataGridViewItems.Location = new System.Drawing.Point(454, 28);
+            this.dataGridViewItems.Location = new System.Drawing.Point(340, 23);
+            this.dataGridViewItems.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewItems.Name = "dataGridViewItems";
             this.dataGridViewItems.RowHeadersWidth = 51;
             this.dataGridViewItems.RowTemplate.Height = 24;
-            this.dataGridViewItems.Size = new System.Drawing.Size(180, 150);
+            this.dataGridViewItems.Size = new System.Drawing.Size(135, 122);
             this.dataGridViewItems.TabIndex = 1;
             // 
             // ColumnItem
@@ -268,11 +378,12 @@
             this.dataGridViewComidas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnNombreComida,
             this.ColumnDieta});
-            this.dataGridViewComidas.Location = new System.Drawing.Point(16, 28);
+            this.dataGridViewComidas.Location = new System.Drawing.Point(12, 23);
+            this.dataGridViewComidas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewComidas.Name = "dataGridViewComidas";
             this.dataGridViewComidas.RowHeadersWidth = 51;
             this.dataGridViewComidas.RowTemplate.Height = 24;
-            this.dataGridViewComidas.Size = new System.Drawing.Size(305, 150);
+            this.dataGridViewComidas.Size = new System.Drawing.Size(229, 122);
             this.dataGridViewComidas.TabIndex = 0;
             // 
             // ColumnNombreComida
@@ -289,108 +400,29 @@
             this.ColumnDieta.Name = "ColumnDieta";
             this.ColumnDieta.Width = 125;
             // 
-            // Hexagon6
+            // buttonMover
             // 
-            this.Hexagon6.BackColor = System.Drawing.Color.Transparent;
-            this.Hexagon6.Image = global::Fdsmlfr.Properties.Resources.hexagon;
-            this.Hexagon6.Location = new System.Drawing.Point(7, 145);
-            this.Hexagon6.Name = "Hexagon6";
-            this.Hexagon6.Size = new System.Drawing.Size(79, 56);
-            this.Hexagon6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Hexagon6.TabIndex = 6;
-            this.Hexagon6.TabStop = false;
-            this.Hexagon6.Click += new System.EventHandler(this.Terreno_Click);
-            // 
-            // Hexagon5
-            // 
-            this.Hexagon5.BackColor = System.Drawing.Color.Transparent;
-            this.Hexagon5.Image = global::Fdsmlfr.Properties.Resources.hexagon;
-            this.Hexagon5.Location = new System.Drawing.Point(4, 248);
-            this.Hexagon5.Name = "Hexagon5";
-            this.Hexagon5.Size = new System.Drawing.Size(79, 56);
-            this.Hexagon5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Hexagon5.TabIndex = 5;
-            this.Hexagon5.TabStop = false;
-            this.Hexagon5.Click += new System.EventHandler(this.Terreno_Click);
-            // 
-            // Hexagon7
-            // 
-            this.Hexagon7.BackColor = System.Drawing.Color.Transparent;
-            this.Hexagon7.Image = global::Fdsmlfr.Properties.Resources.hexagon;
-            this.Hexagon7.Location = new System.Drawing.Point(92, 95);
-            this.Hexagon7.Name = "Hexagon7";
-            this.Hexagon7.Size = new System.Drawing.Size(79, 56);
-            this.Hexagon7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Hexagon7.TabIndex = 4;
-            this.Hexagon7.TabStop = false;
-            this.Hexagon7.Click += new System.EventHandler(this.Terreno_Click);
-            // 
-            // Hexagon4
-            // 
-            this.Hexagon4.BackColor = System.Drawing.Color.Transparent;
-            this.Hexagon4.Image = global::Fdsmlfr.Properties.Resources.hexagon;
-            this.Hexagon4.Location = new System.Drawing.Point(92, 297);
-            this.Hexagon4.Name = "Hexagon4";
-            this.Hexagon4.Size = new System.Drawing.Size(79, 56);
-            this.Hexagon4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Hexagon4.TabIndex = 3;
-            this.Hexagon4.TabStop = false;
-            this.Hexagon4.Click += new System.EventHandler(this.Terreno_Click);
-            // 
-            // Hexagon2
-            // 
-            this.Hexagon2.BackColor = System.Drawing.Color.Transparent;
-            this.Hexagon2.Image = global::Fdsmlfr.Properties.Resources.hexagon;
-            this.Hexagon2.Location = new System.Drawing.Point(177, 145);
-            this.Hexagon2.Name = "Hexagon2";
-            this.Hexagon2.Size = new System.Drawing.Size(79, 56);
-            this.Hexagon2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Hexagon2.TabIndex = 2;
-            this.Hexagon2.TabStop = false;
-            this.Hexagon2.Click += new System.EventHandler(this.Terreno_Click);
-            // 
-            // Hexagon3
-            // 
-            this.Hexagon3.BackColor = System.Drawing.Color.Transparent;
-            this.Hexagon3.Image = global::Fdsmlfr.Properties.Resources.hexagon;
-            this.Hexagon3.Location = new System.Drawing.Point(177, 258);
-            this.Hexagon3.Name = "Hexagon3";
-            this.Hexagon3.Size = new System.Drawing.Size(79, 56);
-            this.Hexagon3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Hexagon3.TabIndex = 1;
-            this.Hexagon3.TabStop = false;
-            this.Hexagon3.Click += new System.EventHandler(this.Terreno_Click);
-            // 
-            // Hexagon1
-            // 
-            this.Hexagon1.BackColor = System.Drawing.Color.Transparent;
-            this.Hexagon1.Image = global::Fdsmlfr.Properties.Resources.hexagon;
-            this.Hexagon1.Location = new System.Drawing.Point(92, 203);
-            this.Hexagon1.Name = "Hexagon1";
-            this.Hexagon1.Size = new System.Drawing.Size(79, 56);
-            this.Hexagon1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Hexagon1.TabIndex = 0;
-            this.Hexagon1.TabStop = false;
-            this.Hexagon1.Click += new System.EventHandler(this.Terreno_Click);
+            this.buttonMover.Location = new System.Drawing.Point(272, 205);
+            this.buttonMover.Name = "buttonMover";
+            this.buttonMover.Size = new System.Drawing.Size(75, 23);
+            this.buttonMover.TabIndex = 5;
+            this.buttonMover.Text = "Moverse";
+            this.buttonMover.UseVisualStyleBackColor = true;
+            this.buttonMover.Click += new System.EventHandler(this.buttonMover_Click);
             // 
             // FormGame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1373, 450);
+            this.ClientSize = new System.Drawing.Size(1030, 366);
             this.Controls.Add(this.panelElementos);
             this.Controls.Add(this.panelCriatura);
             this.Controls.Add(this.panelMap);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormGame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormGame";
             this.panelMap.ResumeLayout(false);
-            this.panelCriatura.ResumeLayout(false);
-            this.panelCriatura.PerformLayout();
-            this.panelElementos.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriaturas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComidas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hexagon6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hexagon5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hexagon7)).EndInit();
@@ -398,6 +430,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.Hexagon2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hexagon3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hexagon1)).EndInit();
+            this.panelCriatura.ResumeLayout(false);
+            this.panelCriatura.PerformLayout();
+            this.panelElementos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCriaturas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewComidas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -434,5 +472,6 @@
         private System.Windows.Forms.DataGridView dataGridViewComidas;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNombreComida;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDieta;
+        private System.Windows.Forms.Button buttonMover;
     }
 }

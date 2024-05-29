@@ -11,8 +11,9 @@ namespace Fdsmlfr.Interfaces
     {
         void Comer(Comida comida);
         void Dormir();
-        //void Moverse();
-        
+
+        bool PuedePasarPorTerreno(ITerreno terreno);
+
         //void Morir();
     }
 }

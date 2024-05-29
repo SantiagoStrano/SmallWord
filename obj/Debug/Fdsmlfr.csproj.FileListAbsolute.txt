@@ -75,3 +75,24 @@ C:\Users\Due\Desktop\SmallWord-main\obj\Debug\Fdsmlfr.csproj.CoreCompileInputs.c
 C:\Users\Due\Desktop\SmallWord-main\obj\Debug\Fdsmlfr.exe
 C:\Users\Due\Desktop\SmallWord-main\obj\Debug\Fdsmlfr.pdb
 C:\Users\Due\Desktop\SmallWord-main\obj\Debug\Fdsmlfr.FormComidaPrueba.resources
+C:\Users\Due\Desktop\Elijo creer\SmallWord\bin\Debug\Img\Hagua.png
+C:\Users\Due\Desktop\Elijo creer\SmallWord\bin\Debug\Img\Htierra.png
+C:\Users\Due\Desktop\Elijo creer\SmallWord\bin\Debug\Fdsmlfr.exe.config
+C:\Users\Due\Desktop\Elijo creer\SmallWord\bin\Debug\Fdsmlfr.exe
+C:\Users\Due\Desktop\Elijo creer\SmallWord\bin\Debug\Fdsmlfr.pdb
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.csproj.AssemblyReference.cache
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.csproj.SuggestedBindingRedirects.cache
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.FormComida.resources
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.FormComidaPrueba.resources
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.FormCriatura.resources
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.FormGame.resources
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.FormAdmin.resources
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.FormIndex.resources
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.FormItem.resources
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.FormItemPrueba.resources
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.FormPelea.resources
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.Properties.Resources.resources
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.csproj.GenerateResource.cache
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.csproj.CoreCompileInputs.cache
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.exe
+C:\Users\Due\Desktop\Elijo creer\SmallWord\obj\Debug\Fdsmlfr.pdb

@@ -156,6 +156,13 @@ namespace Fdsmlfr.Model
         {
             foreach (var habitad in Habitads)
             {
+                // Si la criatura tiene hábitat aéreo, puede pasar por cualquier terreno
+                if (habitad is HabitadAereo)
+                {
+                    return true;
+                }
+
+                // Verificar si la criatura puede habitar el terreno actual
                 if (habitad.CanHabitar(terreno))
                 {
                     return true;
@@ -178,6 +185,12 @@ namespace Fdsmlfr.Model
                 MessageBox.Show($"{Nombre} no puede comer {comida.Nombre} porque no es compatible con su dieta.");
             }
         }
+        public bool PuedeMoverseA(Terreno terreno)
+        {
+            return PuedePasarPorTerreno(terreno.Tipo);
+        }
+
+
         /*
 public void Morir()
 {

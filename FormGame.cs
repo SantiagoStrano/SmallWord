@@ -23,10 +23,17 @@ namespace Fdsmlfr
         private List<Criatura> criaturasDisponibles;
         private List<IInteractuable> interactuablesDisponibles;
         private Random random;
+        private Criatura criaturaSeleccionada;
+        private Terreno terrenoOrigen;
 
         public FormGame()
         {
             InitializeComponent();
+            InicializarComponentesPersonalizados();
+        }
+
+        private void InicializarComponentesPersonalizados()
+        {
             pictureBoxes = new List<PictureBox> { Hexagon1, Hexagon2, Hexagon3, Hexagon4, Hexagon5, Hexagon6, Hexagon7 };
             terrenos = new List<Terreno>();
             random = new Random();
@@ -44,6 +51,17 @@ namespace Fdsmlfr
             comboBoxCriaturas.DataSource = criaturasDisponibles;
 
             InicializarTerrenos();
+            InicializarEventos();
+        }
+
+        private void InicializarEventos()
+        {
+            foreach (PictureBox pictureBox in pictureBoxes)
+            {
+                pictureBox.Click += Terreno_Click;
+            }
+            dataGridViewCriaturas.SelectionChanged += Criatura_Selected;
+            buttonMover.Click += buttonMover_Click;
         }
 
         private void ResetDisponibles()
@@ -56,7 +74,6 @@ namespace Fdsmlfr
 
         private void InicializarTerrenos()
         {
-            // Reinicializar terrenos y listas disponibles
             terrenos.Clear();
             ResetDisponibles();
 
@@ -65,17 +82,12 @@ namespace Fdsmlfr
                 ITerreno tipoTerreno = random.Next(2) == 0 ? (ITerreno)new TerrenoAgua() : (ITerreno)new TerrenoTierra();
                 Terreno terreno = new Terreno(tipoTerreno);
 
-                // Coloca una criatura aleatoria en el terreno si es terreno de tierra
-                if (tipoTerreno is TerrenoTierra)
+                Criatura criaturaAleatoria = GetCriaturaAleatoriaParaTerreno(tipoTerreno);
+                if (criaturaAleatoria != null)
                 {
-                    Criatura criaturaAleatoria = GetCriaturaAleatoria();
-                    if (criaturaAleatoria != null)
-                    {
-                        terreno.Criaturas.Add(criaturaAleatoria);
-                    }
+                    terreno.Criaturas.Add(criaturaAleatoria);
                 }
 
-                // Coloca un interactuable aleatorio en el terreno
                 IInteractuable interactuableAleatorio = GetInteractuableAleatorio();
                 if (interactuableAleatorio != null)
                 {
@@ -87,13 +99,14 @@ namespace Fdsmlfr
             }
         }
 
-        private Criatura GetCriaturaAleatoria()
+        private Criatura GetCriaturaAleatoriaParaTerreno(ITerreno terreno)
         {
-            if (criaturasDisponibles.Count > 0)
+            List<Criatura> criaturasCompatibles = criaturasDisponibles.Where(c => c.PuedePasarPorTerreno(terreno)).ToList();
+            if (criaturasCompatibles.Count > 0)
             {
-                int index = random.Next(criaturasDisponibles.Count);
-                Criatura criatura = criaturasDisponibles[index];
-                criaturasDisponibles.RemoveAt(index);
+                int index = random.Next(criaturasCompatibles.Count);
+                Criatura criatura = criaturasCompatibles[index];
+                criaturasDisponibles.Remove(criatura);
                 return criatura;
             }
             return null;
@@ -116,43 +129,73 @@ namespace Fdsmlfr
             PictureBox pictureBox = sender as PictureBox;
             if (pictureBox != null)
             {
-                // Obtener el índice del PictureBox
                 int index = pictureBoxes.IndexOf(pictureBox);
                 if (index >= 0 && index < terrenos.Count)
                 {
-                    Terreno terreno = terrenos[index];
+                    Terreno terrenoDestino = terrenos[index];
 
-                    // Actualizar el DataGridView de criaturas
-                    dataGridViewCriaturas.Rows.Clear();
-                    if (terreno.Criaturas.Count > 0)
+                    if (criaturaSeleccionada != null && terrenoOrigen != null)
                     {
-                        foreach (Criatura criatura in terreno.Criaturas)
+                        List<int> adyacentes = Mapa.ObtenerTerrenosAdyacentes(terrenos.IndexOf(terrenoOrigen) + 1);
+
+                        // Verificar que el terreno destino es adyacente y la criatura puede pasar por el terreno
+                        if (adyacentes.Contains(index + 1) && criaturaSeleccionada.PuedePasarPorTerreno(terrenoDestino.tipo))
                         {
-                            if (criatura != null)
-                            {
-                                dataGridViewCriaturas.Rows.Add(criatura.Nombre, criatura.Vida);
-                            }
+                            terrenoOrigen.Criaturas.Remove(criaturaSeleccionada);
+                            terrenoDestino.Criaturas.Add(criaturaSeleccionada);
+                            criaturaSeleccionada = null;
+                            terrenoOrigen = null;
+                            MessageBox.Show("La criatura se ha movido correctamente.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("El terreno seleccionado no es adyacente o la criatura no puede moverse a este terreno.");
                         }
                     }
-
-                    // Actualizar el DataGridView de items
-                    dataGridViewItems.Rows.Clear();
-                    dataGridViewComidas.Rows.Clear();
-                    if (terreno.Interactuables.Count > 0)
+                    else
                     {
-                        foreach (IInteractuable interactuable in terreno.Interactuables)
-                        {
-                            if (interactuable is Item item)
-                            {
-                                dataGridViewItems.Rows.Add(item.Nombre);
-                            }
-                            else if (interactuable is Comida comida)
-                            {
-                                dataGridViewComidas.Rows.Add(comida.Nombre, comida.Dieta);
-                            }
-                        }
+                        ActualizarDataGrids(terrenoDestino);
                     }
                 }
+            }
+        }
+
+        private void ActualizarDataGrids(Terreno terreno)
+        {
+            dataGridViewCriaturas.Rows.Clear();
+            if (terreno.Criaturas.Count > 0)
+            {
+                foreach (Criatura criatura in terreno.Criaturas)
+                {
+                    dataGridViewCriaturas.Rows.Add(criatura.Nombre, criatura.Vida);
+                }
+            }
+
+            dataGridViewItems.Rows.Clear();
+            dataGridViewComidas.Rows.Clear();
+            if (terreno.Interactuables.Count > 0)
+            {
+                foreach (IInteractuable interactuable in terreno.Interactuables)
+                {
+                    if (interactuable is Item item)
+                    {
+                        dataGridViewItems.Rows.Add(item.Nombre);
+                    }
+                    else if (interactuable is Comida comida)
+                    {
+                        dataGridViewComidas.Rows.Add(comida.Nombre, comida.Dieta);
+                    }
+                }
+            }
+        }
+        private void Criatura_Selected(object sender, EventArgs e)
+        {
+            if (dataGridViewCriaturas.SelectedRows.Count > 0)
+            {
+                string nombreCriatura = dataGridViewCriaturas.SelectedRows[0].Cells[0].Value.ToString();
+                criaturaSeleccionada = terrenos.SelectMany(t => t.Criaturas)
+                                               .FirstOrDefault(c => c.Nombre == nombreCriatura);
+                terrenoOrigen = terrenos.FirstOrDefault(t => t.Criaturas.Contains(criaturaSeleccionada));
             }
         }
 
@@ -171,6 +214,18 @@ namespace Fdsmlfr
             }
         }
 
+        private void buttonMover_Click(object sender, EventArgs e)
+        {
+            if (criaturaSeleccionada == null)
+            {
+                MessageBox.Show("Por favor, seleccione una criatura primero.");
+                return;
+            }
+
+            MessageBox.Show("Seleccione el terreno al cual desea mover la criatura.");
+            // Aquí se esperará a que el usuario seleccione un terreno haciendo click en uno de los PictureBox
+        }
     }
+    
 }
 
