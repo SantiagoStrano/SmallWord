@@ -167,7 +167,9 @@ namespace Fdsmlfr
             {
                 foreach (Criatura criatura in terreno.Criaturas)
                 {
-                    dataGridViewCriaturas.Rows.Add(criatura.Nombre, criatura.Vida);
+                    string habitads = string.Join(", ", criatura.Habitads);
+                    dataGridViewCriaturas.Rows.Add(criatura.Nombre, criatura.Vida, habitads);
+                    
                 }
             }
 
@@ -211,6 +213,7 @@ namespace Fdsmlfr
                 textBoxEnergia.Text = criaturaSeleccionada.Energia.ToString();
                 textBoxAtaque.Text = criaturaSeleccionada.PntAtack.ToString();
                 textBoxDefensa.Text = criaturaSeleccionada.PntDef.ToString();
+                textBoxDieta.Text = criaturaSeleccionada.Dieta.ToString();
             }
         }
 
