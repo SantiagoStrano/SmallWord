@@ -27,7 +27,6 @@ namespace Fdsmlfr.Controllers
             List<IDieta> listaDietas = new List<IDieta>
             {
                 new DietCarnivoro(),
-                
                 new DietVegetariano()
             };
             return listaDietas;
