@@ -100,7 +100,7 @@ namespace Fdsmlfr
                 string habitadsString = string.Join(", ", criatura.Habitads.Select(h => h.ToString()));
                 row.Cells[7].Value = habitadsString;
 
-                row.Tag = criatura; // Asociar la criatura con la fila
+                row.Tag = criatura; 
 
                 dataGridCriatura.Rows.Add(row);
             }
@@ -152,7 +152,7 @@ namespace Fdsmlfr
                     }
                 }
 
-                dataGridCriatura.Rows.RemoveAt(dataGridCriatura.SelectedRows[0].Index); // Eliminar la fila del DataGridView
+                dataGridCriatura.Rows.RemoveAt(dataGridCriatura.SelectedRows[0].Index); 
             }
         }
 

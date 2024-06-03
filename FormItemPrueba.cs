@@ -41,5 +41,23 @@ namespace Fdsmlfr
 
             }
         }
+
+        private void PonerDatosCriatura(object sender, EventArgs e)
+        {
+            Criatura criaturaSelec = (Criatura)comboCriatura.SelectedItem;
+            textBoxVida.Text = criaturaSelec.Vida.ToString();
+            textBoxEnergia.Text = criaturaSelec.Energia.ToString();
+
+
+        }
+
+        private void PonerDatosItem(object sender, EventArgs e)
+        {
+            Item itemSelec = (Item)comboItem.SelectedItem;
+            string estrategiasString = string.Join(", ", itemSelec.Estrategias.Select(estrategia => estrategia.ToString()));
+            textBoxEfectos.Text = estrategiasString;
+
+
+        }
     }
 }

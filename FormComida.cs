@@ -64,7 +64,7 @@ namespace Fdsmlfr
                 row.CreateCells(dataGridComida);
                 row.Cells[0].Value = comida.Nombre;
                 row.Cells[1].Value = comida.Dieta.ToString();
-                row.Tag = comida; // Asociar la comida con la fila
+                row.Tag = comida; 
                 dataGridComida.Rows.Add(row);
             }
         }

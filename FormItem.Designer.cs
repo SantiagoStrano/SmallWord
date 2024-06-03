@@ -87,9 +87,9 @@ namespace Fdsmlfr
             this.buttonCreateItem.Location = new System.Drawing.Point(672, 459);
             this.buttonCreateItem.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCreateItem.Name = "buttonCreateItem";
-            this.buttonCreateItem.Size = new System.Drawing.Size(56, 19);
+            this.buttonCreateItem.Size = new System.Drawing.Size(100, 19);
             this.buttonCreateItem.TabIndex = 4;
-            this.buttonCreateItem.Text = "Crear";
+            this.buttonCreateItem.Text = "Crear item";
             this.buttonCreateItem.UseVisualStyleBackColor = true;
             this.buttonCreateItem.Click += new System.EventHandler(this.buttonCreateItem_Click);
             // 
@@ -157,9 +157,9 @@ namespace Fdsmlfr
             // 
             this.buttonAgregar.Location = new System.Drawing.Point(640, 212);
             this.buttonAgregar.Name = "buttonAgregar";
-            this.buttonAgregar.Size = new System.Drawing.Size(75, 23);
+            this.buttonAgregar.Size = new System.Drawing.Size(132, 23);
             this.buttonAgregar.TabIndex = 10;
-            this.buttonAgregar.Text = "Agregar";
+            this.buttonAgregar.Text = "Agregar a item";
             this.buttonAgregar.UseVisualStyleBackColor = true;
             this.buttonAgregar.Click += new System.EventHandler(this.buttonAgregar_Click);
             // 
@@ -188,9 +188,9 @@ namespace Fdsmlfr
             // 
             this.buttonElimarEfecto.Location = new System.Drawing.Point(862, 319);
             this.buttonElimarEfecto.Name = "buttonElimarEfecto";
-            this.buttonElimarEfecto.Size = new System.Drawing.Size(75, 23);
+            this.buttonElimarEfecto.Size = new System.Drawing.Size(75, 42);
             this.buttonElimarEfecto.TabIndex = 12;
-            this.buttonElimarEfecto.Text = "Eliminar";
+            this.buttonElimarEfecto.Text = "Eliminar efecto";
             this.buttonElimarEfecto.UseVisualStyleBackColor = true;
             this.buttonElimarEfecto.Click += new System.EventHandler(this.buttonEliminarEfecto_Click);
             // 
@@ -198,9 +198,9 @@ namespace Fdsmlfr
             // 
             this.buttonEliminarItem.Location = new System.Drawing.Point(1322, 234);
             this.buttonEliminarItem.Name = "buttonEliminarItem";
-            this.buttonEliminarItem.Size = new System.Drawing.Size(75, 23);
+            this.buttonEliminarItem.Size = new System.Drawing.Size(104, 23);
             this.buttonEliminarItem.TabIndex = 14;
-            this.buttonEliminarItem.Text = "Eliminar";
+            this.buttonEliminarItem.Text = "Eliminar item";
             this.buttonEliminarItem.UseVisualStyleBackColor = true;
             this.buttonEliminarItem.Click += new System.EventHandler(this.buttonEliminarItem_Click);
             // 
@@ -208,9 +208,9 @@ namespace Fdsmlfr
             // 
             this.buttonModificarItem.Location = new System.Drawing.Point(1322, 275);
             this.buttonModificarItem.Name = "buttonModificarItem";
-            this.buttonModificarItem.Size = new System.Drawing.Size(75, 23);
+            this.buttonModificarItem.Size = new System.Drawing.Size(104, 23);
             this.buttonModificarItem.TabIndex = 15;
-            this.buttonModificarItem.Text = "Modificar";
+            this.buttonModificarItem.Text = "Modificar item";
             this.buttonModificarItem.UseVisualStyleBackColor = true;
             this.buttonModificarItem.Click += new System.EventHandler(this.buttonModificarItem_Click);
             // 
