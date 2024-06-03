@@ -156,13 +156,13 @@ namespace Fdsmlfr.Model
         {
             foreach (var habitad in Habitads)
             {
-                // Si la criatura tiene hábitat aéreo, puede pasar por cualquier terreno
+                
                 if (habitad is HabitadAereo)
                 {
                     return true;
                 }
 
-                // Verificar si la criatura puede habitar el terreno actual
+                
                 if (habitad.CanHabitar(terreno))
                 {
                     return true;
@@ -176,7 +176,7 @@ namespace Fdsmlfr.Model
             if (Dieta.CanEat(comida))
             {
                 Random random = new Random();
-                int energiaRecuperada = random.Next(20, 31); // Recupera entre 20 y 30 de energía
+                int energiaRecuperada = random.Next(20, 31);
                 SetEnergiaPlus(energiaRecuperada);
                 MessageBox.Show($"{Nombre} ha comido {comida.Nombre} y ha ganado {energiaRecuperada} de energía.");
             }
