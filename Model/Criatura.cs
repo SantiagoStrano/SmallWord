@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fdsmlfr.Controllers;
 using Fdsmlfr.Interfaces;
-
+using Fdsmlfr.Model.Dietas;
 
 namespace Fdsmlfr.Model
 {
@@ -173,7 +173,7 @@ namespace Fdsmlfr.Model
 
         void ICriatura.Comer(Comida comida)
         {
-            if (Dieta.CanEat(comida))
+            if (Dieta is DietOmnivoro || Dieta.CanEat(comida))
             {
                 Random random = new Random();
                 int energiaRecuperada = random.Next(20, 31);
@@ -185,10 +185,7 @@ namespace Fdsmlfr.Model
                 MessageBox.Show($"{Nombre} no puede comer {comida.Nombre} porque no es compatible con su dieta.");
             }
         }
-        public bool PuedeMoverseA(Terreno terreno)
-        {
-            return PuedePasarPorTerreno(terreno.Tipo);
-        }
+       
 
 
         /*

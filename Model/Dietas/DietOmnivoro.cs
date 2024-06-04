@@ -11,7 +11,7 @@ namespace Fdsmlfr.Model.Dietas
     {
         public bool CanEat(IInteractuable food)
         {
-            return food is Criatura;
+            return food is Comida;
         }
 
         public override string ToString()

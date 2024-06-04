@@ -25,6 +25,7 @@ namespace Fdsmlfr
         private Random random;
         private Criatura criaturaSeleccionada;
         private Terreno terrenoOrigen;
+        private bool moviendoCriatura;
 
         public FormGame()
         {
@@ -156,8 +157,10 @@ namespace Fdsmlfr
             {
                 terrenoOrigen.Criaturas.Remove(criaturaSeleccionada);
                 terrenoDestino.Criaturas.Add(criaturaSeleccionada);
+                ResetearResaltado();
                 criaturaSeleccionada = null;
                 terrenoOrigen = null;
+                moviendoCriatura = false;
                 MessageBox.Show("La criatura se ha movido correctamente.");
             }
             else
@@ -201,7 +204,27 @@ namespace Fdsmlfr
             }
         }
 
+        private void ResaltarTerrenosAdyacentes(Terreno terrenoOrigen)
+        {
+            List<int> adyacentes = Mapa.ObtenerTerrenosAdyacentes(terrenos.IndexOf(terrenoOrigen) + 1);
+            foreach (int index in adyacentes)
+            {
+                if (index - 1 >= 0 && index - 1 < pictureBoxes.Count)
+                {
+                    pictureBoxes[index - 1].BorderStyle = BorderStyle.Fixed3D;
+                    pictureBoxes[index - 1].BackColor = Color.Red; // CAMBIAR ESTOOOOOOOOO
+                }
+            }
+        }
 
+        private void ResetearResaltado()
+        {
+            foreach (PictureBox pictureBox in pictureBoxes)
+            {
+                pictureBox.BorderStyle = BorderStyle.None;
+                pictureBox.BackColor = SystemColors.Control; 
+            }
+        }
         private void Criatura_Selected(object sender, EventArgs e)
         {
             if (dataGridViewCriaturas.SelectedRows.Count > 0)
@@ -210,6 +233,7 @@ namespace Fdsmlfr
                 criaturaSeleccionada = terrenos.SelectMany(t => t.Criaturas)
                                                .FirstOrDefault(c => c.Nombre == nombreCriatura);
                 terrenoOrigen = terrenos.FirstOrDefault(t => t.Criaturas.Contains(criaturaSeleccionada));
+                ResaltarTerrenosAdyacentes(terrenoOrigen);
             }
         }
 
@@ -231,14 +255,18 @@ namespace Fdsmlfr
 
         private void buttonMover_Click(object sender, EventArgs e)
         {
+            
             if (criaturaSeleccionada == null)
             {
-                MessageBox.Show("Por favor, seleccione una criatura primero.");
+                MessageBox.Show("Por favor, seleccione una criatura primero");
                 return;
             }
-
-            MessageBox.Show("Seleccione el terreno al cual desea mover la criatura.");
-            
+            else
+            {
+                MessageBox.Show("Selecciona el destino");
+                moviendoCriatura = true;
+            }
+           
         }
     }
     

@@ -27,7 +27,18 @@ namespace Fdsmlfr.Controllers
             List<IDieta> listaDietas = new List<IDieta>
             {
                 new DietCarnivoro(),
+                new DietVegetariano(),
+                new DietOmnivoro()
+            };
+            return listaDietas;
+        }
+        public List<IDieta> GetAllDietasNotOmnivoro()
+        {
+            List<IDieta> listaDietas = new List<IDieta>
+            {
+                new DietCarnivoro(),
                 new DietVegetariano()
+                
             };
             return listaDietas;
         }

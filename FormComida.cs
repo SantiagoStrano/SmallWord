@@ -32,7 +32,7 @@ namespace Fdsmlfr
         private void CargarCombos()
         {
             comboDiet.Items.Add("-Seleccionar dieta-");
-            List<IDieta> listaDietas = cntrlDieta.GetAllDietas();
+            List<IDieta> listaDietas = cntrlDieta.GetAllDietasNotOmnivoro();
             comboDiet.Items.AddRange(listaDietas.ToArray());
             comboDiet.SelectedIndex = 0;
         }
