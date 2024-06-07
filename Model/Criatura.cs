@@ -167,6 +167,7 @@ namespace Fdsmlfr.Model
                 {
                     return true;
                 }
+                SetEnergia(20);
             }
             return false;
         }

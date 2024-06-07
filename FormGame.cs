@@ -16,16 +16,11 @@ namespace Fdsmlfr
     public partial class FormGame : Form
     {
         private List<PictureBox> pictureBoxes;
-        private List<Terreno> terrenos;
-        private List<Criatura> criaturasOriginales;
-        private List<Comida> comidasOriginales;
-        private List<Item> itemsOriginales;
-        private List<Criatura> criaturasDisponibles;
-        private List<IInteractuable> interactuablesDisponibles;
-        private Random random;
+        private Game game;
+        private InicioController gameInitializer;
+        private ActualizacionController gameUpdater;
         private Criatura criaturaSeleccionada;
         private Terreno terrenoOrigen;
-        private bool moviendoCriatura;
 
         public FormGame()
         {
@@ -36,21 +31,15 @@ namespace Fdsmlfr
         private void InicializarComponentesPersonalizados()
         {
             pictureBoxes = new List<PictureBox> { Hexagon1, Hexagon2, Hexagon3, Hexagon4, Hexagon5, Hexagon6, Hexagon7 };
-            terrenos = new List<Terreno>();
-            random = new Random();
+            game = new Game();
+            gameInitializer = new InicioController(game);
+            gameUpdater = new ActualizacionController(game);
 
-            // Listas originales
-            criaturasOriginales = CriaturaController.GetInstace().GetCriaturasList();
-            comidasOriginales = ComidaController.GetInstace().GetComidaList();
-            itemsOriginales = ItemController.GetInstance().GetItemList();
-
-            // Listas copias
-            ResetDisponibles();
+            gameInitializer.InitializeGame(pictureBoxes);
 
             comboBoxCriaturas.DisplayMember = "Nombre";
-            comboBoxCriaturas.DataSource = criaturasDisponibles;
+            comboBoxCriaturas.DataSource = game.CriaturasDisponibles;
 
-            InicializarTerrenos();
             InicializarEventos();
         }
 
@@ -64,108 +53,32 @@ namespace Fdsmlfr
             buttonMover.Click += buttonMover_Click;
         }
 
-        private void ResetDisponibles()
-        {
-            criaturasDisponibles = new List<Criatura>(criaturasOriginales);
-            interactuablesDisponibles = new List<IInteractuable>();
-            interactuablesDisponibles.AddRange(comidasOriginales);
-            interactuablesDisponibles.AddRange(itemsOriginales);
-        }
-
-        private void InicializarTerrenos()
-        {
-            terrenos.Clear();
-            ResetDisponibles();
-
-            foreach (PictureBox pictureBox in pictureBoxes)
-            {
-                ITerreno tipoTerreno = random.Next(2) == 0 ? (ITerreno)new TerrenoAgua() : (ITerreno)new TerrenoTierra();
-                Terreno terreno = new Terreno(tipoTerreno);
-
-                Criatura criaturaAleatoria = GetCriaturaAleatoriaParaTerreno(tipoTerreno);
-                if (criaturaAleatoria != null)
-                {
-                    terreno.Criaturas.Add(criaturaAleatoria);
-                }
-
-                IInteractuable interactuableAleatorio = GetInteractuableAleatorio();
-                if (interactuableAleatorio != null)
-                {
-                    terreno.Interactuables.Add(interactuableAleatorio);
-                }
-
-                terrenos.Add(terreno);
-                pictureBox.Image = tipoTerreno.GetImage();
-            }
-        }
-
-        private Criatura GetCriaturaAleatoriaParaTerreno(ITerreno terreno)
-        {
-            List<Criatura> criaturasCompatibles = criaturasDisponibles.Where(c => c.PuedePasarPorTerreno(terreno)).ToList();
-            if (criaturasCompatibles.Count > 0)
-            {
-                int index = random.Next(criaturasCompatibles.Count);
-                Criatura criatura = criaturasCompatibles[index];
-                criaturasDisponibles.Remove(criatura);
-                return criatura;
-            }
-            return null;
-        }
-
-        private IInteractuable GetInteractuableAleatorio()
-        {
-            if (interactuablesDisponibles.Count > 0)
-            {
-                int index = random.Next(interactuablesDisponibles.Count);
-                IInteractuable interactuable = interactuablesDisponibles[index];
-                interactuablesDisponibles.RemoveAt(index);
-                return interactuable;
-            }
-            return null;
-        }
-
         private void Terreno_Click(object sender, EventArgs e)
         {
             if (sender is PictureBox pictureBox)
             {
                 int index = pictureBoxes.IndexOf(pictureBox);
-                if (index >= 0 && index < terrenos.Count)
+                if (index >= 0 && index < game.Terrenos.Count)
                 {
-                    Terreno terrenoDestino = terrenos[index];
+                    var terrenoDestino = game.Terrenos[index];
                     ProcesarTerrenoClick(terrenoDestino, index);
                 }
             }
         }
-        //Vemos que deseamos hacer si actualizar o mover
+
         private void ProcesarTerrenoClick(Terreno terrenoDestino, int index)
         {
             if (criaturaSeleccionada != null && terrenoOrigen != null)
             {
-                MoverCriatura(terrenoDestino, index);
-            }
-            else
-            {
-                ActualizarDataGrids(terrenoDestino);
-            }
-        }
-
-        private void MoverCriatura(Terreno terrenoDestino, int index)
-        {
-            List<int> adyacentes = Mapa.ObtenerTerrenosAdyacentes(terrenos.IndexOf(terrenoOrigen) + 1);
-
-            if (adyacentes.Contains(index + 1) && criaturaSeleccionada.PuedePasarPorTerreno(terrenoDestino.tipo))
-            {
-                terrenoOrigen.Criaturas.Remove(criaturaSeleccionada);
-                terrenoDestino.Criaturas.Add(criaturaSeleccionada);
+                gameUpdater.MoverCriatura(terrenoOrigen, terrenoDestino, criaturaSeleccionada);
                 ResetearResaltado();
                 criaturaSeleccionada = null;
                 terrenoOrigen = null;
-                moviendoCriatura = false;
                 MessageBox.Show("La criatura se ha movido correctamente.");
             }
             else
             {
-                MessageBox.Show("El terreno seleccionado no es adyacente o la criatura no puede moverse a este terreno.");
+                ActualizarDataGrids(terrenoDestino);
             }
         }
 
@@ -206,7 +119,7 @@ namespace Fdsmlfr
 
         private void ResaltarTerrenosAdyacentes(Terreno terrenoOrigen)
         {
-            List<int> adyacentes = Mapa.ObtenerTerrenosAdyacentes(terrenos.IndexOf(terrenoOrigen) + 1);
+            List<int> adyacentes = Mapa.ObtenerTerrenosAdyacentes(game.Terrenos.IndexOf(terrenoOrigen) + 1);
             foreach (int index in adyacentes)
             {
                 if (index - 1 >= 0 && index - 1 < pictureBoxes.Count)
@@ -222,17 +135,18 @@ namespace Fdsmlfr
             foreach (PictureBox pictureBox in pictureBoxes)
             {
                 pictureBox.BorderStyle = BorderStyle.None;
-                pictureBox.BackColor = SystemColors.Control; 
+                pictureBox.BackColor = SystemColors.Control;
             }
         }
+
         private void Criatura_Selected(object sender, EventArgs e)
         {
             if (dataGridViewCriaturas.SelectedRows.Count > 0)
             {
                 string nombreCriatura = dataGridViewCriaturas.SelectedRows[0].Cells[0].Value.ToString();
-                criaturaSeleccionada = terrenos.SelectMany(t => t.Criaturas)
-                                               .FirstOrDefault(c => c.Nombre == nombreCriatura);
-                terrenoOrigen = terrenos.FirstOrDefault(t => t.Criaturas.Contains(criaturaSeleccionada));
+                criaturaSeleccionada = game.Terrenos.SelectMany(t => t.Criaturas)
+                                                    .FirstOrDefault(c => c.Nombre == nombreCriatura);
+                terrenoOrigen = game.Terrenos.FirstOrDefault(t => t.Criaturas.Contains(criaturaSeleccionada));
                 ResaltarTerrenosAdyacentes(terrenoOrigen);
             }
         }
@@ -241,10 +155,8 @@ namespace Fdsmlfr
         {
             Criatura criaturaSeleccionada = comboBoxCriaturas.SelectedItem as Criatura;
 
-            
             if (criaturaSeleccionada != null)
             {
-
                 textBoxVida.Text = criaturaSeleccionada.Vida.ToString();
                 textBoxEnergia.Text = criaturaSeleccionada.Energia.ToString();
                 textBoxAtaque.Text = criaturaSeleccionada.PntAtack.ToString();
@@ -255,20 +167,12 @@ namespace Fdsmlfr
 
         private void buttonMover_Click(object sender, EventArgs e)
         {
-            
             if (criaturaSeleccionada == null)
             {
                 MessageBox.Show("Por favor, seleccione una criatura primero");
                 return;
             }
-            else
-            {
-                MessageBox.Show("Selecciona el destino");
-                moviendoCriatura = true;
-            }
-           
+            MessageBox.Show("Selecciona el destino");
         }
     }
-    
 }
-
