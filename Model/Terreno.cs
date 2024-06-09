@@ -1,13 +1,14 @@
 ﻿using Fdsmlfr.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Fdsmlfr.Model
 {
-    public class Terreno
+    public class Terreno:ITerreno
     {
 
         public ITerreno tipo;
@@ -43,6 +44,11 @@ namespace Fdsmlfr.Model
         public void RemoveInteractuable(IInteractuable interactuable)
         {
             Interactuables.Remove(interactuable);
+        }
+
+        public Image GetImage()
+        {
+            throw new NotImplementedException();
         }
     }
 }

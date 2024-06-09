@@ -54,10 +54,6 @@ namespace Fdsmlfr.Model
            
         }
 
-        public Criatura Clone()
-        {
-            return new Criatura(Nombre, Dieta, MaxEnergia, MaxVida, PntAtack, PntDef, Reino, new List<IHabitad>(Habitads));
-        }
         public void Dormir()
         {
             Energia += 30;
@@ -159,6 +155,7 @@ namespace Fdsmlfr.Model
                 
                 if (habitad is HabitadAereo)
                 {
+
                     return true;
                 }
 
@@ -166,8 +163,9 @@ namespace Fdsmlfr.Model
                 if (habitad.CanHabitar(terreno))
                 {
                     return true;
+                    
                 }
-                SetEnergia(20);
+                
             }
             return false;
         }
@@ -179,11 +177,11 @@ namespace Fdsmlfr.Model
                 Random random = new Random();
                 int energiaRecuperada = random.Next(20, 31);
                 SetEnergiaPlus(energiaRecuperada);
-                MessageBox.Show($"{Nombre} ha comido {comida.Nombre} y ha ganado {energiaRecuperada} de energía.");
+                MessageBox.Show($"{Nombre} ha comido {comida.Nombre} y ha ganado {energiaRecuperada} de energía");
             }
             else
             {
-                MessageBox.Show($"{Nombre} no puede comer {comida.Nombre} porque no es compatible con su dieta.");
+                MessageBox.Show($"{Nombre} no puede comer {comida.Nombre} porque no es compatible con su dieta");
             }
         }
        

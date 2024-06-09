@@ -45,5 +45,18 @@ namespace Fdsmlfr.Controllers
         {
             return ListItems.Find(i => i.Nombre == nombre);
         }
+        public void ItemsPreCargados()
+        {
+            CreateItem("Manzana dorada", new List<EstrategiaConCantidad>
+            {
+                new EstrategiaConCantidad(EstrategiaController.GetInstance().GetAllEstrategias()[0], 10),
+                new EstrategiaConCantidad(EstrategiaController.GetInstance().GetAllEstrategias()[1], 25)
+            });
+            CreateItem("Corte", new List<EstrategiaConCantidad>
+            {
+                new EstrategiaConCantidad(EstrategiaController.GetInstance().GetAllEstrategias()[2], 30)
+            });
+
+        }
     }
 }

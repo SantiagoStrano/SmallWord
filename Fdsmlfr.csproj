@@ -118,7 +118,6 @@
     <Compile Include="Interfaces\IInteractuable.cs" />
     <Compile Include="Interfaces\IEstrategia.cs" />
     <Compile Include="Interfaces\IMapa.cs" />
-    <Compile Include="Interfaces\IPosicionable.cs" />
     <Compile Include="Interfaces\IReino.cs" />
     <Compile Include="Interfaces\ITerreno.cs" />
     <Compile Include="Controllers\ActualizacionController.cs" />

@@ -11,7 +11,7 @@ namespace Fdsmlfr.Controllers
     internal class TerrenoController
     {
         static TerrenoController Instance;
-        public static TerrenoController GetInstance() 
+        public static TerrenoController GetInstance() //singleton
         {
             if (Instance == null)
             {

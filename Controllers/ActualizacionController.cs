@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Fdsmlfr.Model
 {
@@ -17,11 +18,22 @@ namespace Fdsmlfr.Model
 
         public void MoverCriatura(Terreno terrenoOrigen, Terreno terrenoDestino, Criatura criatura)
         {
-            if (criatura.PuedePasarPorTerreno(terrenoDestino.Tipo))
+            if (criatura.PuedePasarPorTerreno(terrenoDestino))
             {
                 terrenoOrigen.RemoveCriatura(criatura);
                 terrenoDestino.AddCriatura(criatura);
+                MessageBox.Show("La criatura se ha movido correctamento");
             }
+            else
+            {
+                MessageBox.Show("La criatura no puede pasar por el terreno");
+            }
+        }
+
+        public void UsarItem(Criatura criatura, Item item)
+        {
+            item.Interactuar(criatura);
+            MessageBox.Show($"{criatura.Nombre} ha usado {item.Nombre}.");
         }
     }
 }

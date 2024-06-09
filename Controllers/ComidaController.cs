@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Fdsmlfr.Interfaces;
+using Fdsmlfr.Model.Dietas;
 
 namespace Fdsmlfr.Controllers
 {
@@ -35,6 +36,15 @@ namespace Fdsmlfr.Controllers
         public void EliminarComida(Comida comida) 
         { 
             ListComida.Remove(comida);
+        }
+        public void ComidasPreCargadas() 
+        {
+            CreateFood("Tomate", new DietVegetariano());
+            CreateFood("Lechuga", new DietVegetariano());
+            CreateFood("Zanahoria", new DietVegetariano());
+            CreateFood("Pollo", new DietCarnivoro());
+            CreateFood("Chuletas", new DietCarnivoro());
+
         }
     }
 }

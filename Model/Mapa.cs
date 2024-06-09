@@ -40,7 +40,7 @@ namespace Fdsmlfr.Model
             return terrenosAleatorios;
         }
 
-        public static List<int> ObtenerTerrenosAdyacentes(int terrenoId)
+        public static List<int> ObtenerTerrenosAdyacentes(int terrenoId)//deberias pasar el objetoooooooooo
         {
             switch (terrenoId)
             {

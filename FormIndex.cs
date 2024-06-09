@@ -15,10 +15,14 @@ namespace Fdsmlfr
     public partial class FormIndex : Form
     {
         CriaturaController cntrCriatura = CriaturaController.GetInstace();
+        ComidaController cntrComida = ComidaController.GetInstace();
+        ItemController cntrItem = ItemController.GetInstance();
         public FormIndex()
         {
             InitializeComponent();
             cntrCriatura.CriaturasPrecargadas();
+            cntrComida.ComidasPreCargadas();
+            cntrItem.ItemsPreCargados();
             buttonEntrar.BackgroundImageLayout = ImageLayout.Stretch;
             buttonAdmin.BackgroundImageLayout = ImageLayout.Stretch;
         }

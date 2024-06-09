@@ -37,9 +37,6 @@ namespace Fdsmlfr
 
             gameInitializer.InitializeGame(pictureBoxes);
 
-            comboBoxCriaturas.DisplayMember = "Nombre";
-            comboBoxCriaturas.DataSource = game.CriaturasDisponibles;
-
             InicializarEventos();
         }
 
@@ -51,6 +48,9 @@ namespace Fdsmlfr
             }
             dataGridViewCriaturas.SelectionChanged += Criatura_Selected;
             buttonMover.Click += buttonMover_Click;
+            buttonComer.Click += buttonComer_Click;
+            buttonUsar.Click += buttonUsar_Click;
+            buttonAtacar.Click += buttonAtacar_Click;
         }
 
         private void Terreno_Click(object sender, EventArgs e)
@@ -60,26 +60,55 @@ namespace Fdsmlfr
                 int index = pictureBoxes.IndexOf(pictureBox);
                 if (index >= 0 && index < game.Terrenos.Count)
                 {
+
                     var terrenoDestino = game.Terrenos[index];
+                    comboBoxCriaturas.DataSource = null;
+                    comboBoxCriaturas.Items.Clear();
+                    LimpiarTextBox();
                     ProcesarTerrenoClick(terrenoDestino, index);
+                    
                 }
             }
         }
-
+        private void LimpiarTextBox()
+        {
+            textBoxVida.Text = string.Empty;
+            textBoxEnergia.Text = string.Empty;
+            textBoxAtaque.Text = string.Empty;
+            textBoxDefensa.Text = string.Empty;
+            textBoxDieta.Text = string.Empty;
+        }
         private void ProcesarTerrenoClick(Terreno terrenoDestino, int index)
         {
             if (criaturaSeleccionada != null && terrenoOrigen != null)
             {
-                gameUpdater.MoverCriatura(terrenoOrigen, terrenoDestino, criaturaSeleccionada);
-                ResetearResaltado();
-                criaturaSeleccionada = null;
-                terrenoOrigen = null;
-                MessageBox.Show("La criatura se ha movido correctamente.");
+                if (EsTerrenoAdyacente(terrenoOrigen, terrenoDestino))
+                {
+                    gameUpdater.MoverCriatura(terrenoOrigen, terrenoDestino, criaturaSeleccionada);
+                    ResetearResaltado();
+                    criaturaSeleccionada = null;
+                    terrenoOrigen = null;
+                    
+                }
+                else
+                {
+                    MessageBox.Show("Solo puedes moverte a terrenos adyacentes");
+                }
             }
             else
             {
+                
                 ActualizarDataGrids(terrenoDestino);
+                ActualizarComboBoxCriaturas(terrenoDestino.Criaturas);
             }
+        }
+
+        private bool EsTerrenoAdyacente(Terreno terrenoOrigen, Terreno terrenoDestino)
+        {
+            int indiceOrigen = game.Terrenos.IndexOf(terrenoOrigen) + 1;
+            int indiceDestino = game.Terrenos.IndexOf(terrenoDestino) + 1;
+            List<int> terrenosAdyacentes = Mapa.ObtenerTerrenosAdyacentes(indiceOrigen);
+            return terrenosAdyacentes.Contains(indiceDestino);
         }
 
         private void ActualizarDataGrids(Terreno terreno)
@@ -117,6 +146,12 @@ namespace Fdsmlfr
             }
         }
 
+        private void ActualizarComboBoxCriaturas(List<Criatura> criaturas)
+        {
+            comboBoxCriaturas.DisplayMember = "Nombre";
+            comboBoxCriaturas.DataSource = criaturas;
+        }
+
         private void ResaltarTerrenosAdyacentes(Terreno terrenoOrigen)
         {
             List<int> adyacentes = Mapa.ObtenerTerrenosAdyacentes(game.Terrenos.IndexOf(terrenoOrigen) + 1);
@@ -148,6 +183,7 @@ namespace Fdsmlfr
                                                     .FirstOrDefault(c => c.Nombre == nombreCriatura);
                 terrenoOrigen = game.Terrenos.FirstOrDefault(t => t.Criaturas.Contains(criaturaSeleccionada));
                 ResaltarTerrenosAdyacentes(terrenoOrigen);
+                ActualizarComboBoxCriaturas(terrenoOrigen.Criaturas);
             }
         }
 
@@ -167,12 +203,98 @@ namespace Fdsmlfr
 
         private void buttonMover_Click(object sender, EventArgs e)
         {
-            if (criaturaSeleccionada == null)
+            if (comboBoxCriaturas.SelectedItem == null)
             {
-                MessageBox.Show("Por favor, seleccione una criatura primero");
+                MessageBox.Show("Seleccione una criatura");
                 return;
             }
+            criaturaSeleccionada = comboBoxCriaturas.SelectedItem as Criatura;
             MessageBox.Show("Selecciona el destino");
+        }
+
+        private void buttonComer_Click(object sender, EventArgs e)
+        {
+            if (comboBoxCriaturas.SelectedItem == null)
+            {
+                MessageBox.Show("Seleccione una criatura");
+                return;
+            }
+            criaturaSeleccionada = comboBoxCriaturas.SelectedItem as Criatura;
+
+            if (dataGridViewComidas.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione una comida");
+                return;
+            }
+
+            string nombreComida = dataGridViewComidas.SelectedRows[0].Cells[0].Value.ToString();
+            Comida comidaSeleccionada = null;
+            Terreno terrenoActual = null;
+
+            
+            foreach (var terreno in game.Terrenos)
+            {
+                comidaSeleccionada = terreno.Interactuables.OfType<Comida>().FirstOrDefault(c => c.Nombre == nombreComida);
+                if (comidaSeleccionada != null)
+                {
+                    terrenoActual = terreno;
+                    break;
+                }
+            }
+
+            if (comidaSeleccionada != null && terrenoActual != null)
+            {
+                ((ICriatura)criaturaSeleccionada).Comer(comidaSeleccionada);
+
+                // Vemos si funciono
+                if (!game.InteractuablesDisponibles.Contains(comidaSeleccionada))
+                {
+                    terrenoActual.RemoveInteractuable(comidaSeleccionada);
+                    ActualizarDataGrids(terrenoActual);
+                }
+            }
+        }
+
+        private void buttonUsar_Click(object sender, EventArgs e)
+        {
+            if (comboBoxCriaturas.SelectedItem == null)
+            {
+                MessageBox.Show("Selecciona una criatura");
+                return;
+            }
+            criaturaSeleccionada = comboBoxCriaturas.SelectedItem as Criatura;
+
+            if (dataGridViewItems.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleeciona un item");
+                return;
+            }
+
+            string nombreItem = dataGridViewItems.SelectedRows[0].Cells[0].Value.ToString();
+            Item itemSeleccionado = null;
+            Terreno terrenoActual = null;
+
+            // Terremp e iten
+            foreach (var terreno in game.Terrenos)
+            {
+                itemSeleccionado = terreno.Interactuables.OfType<Item>().FirstOrDefault(i => i.Nombre == nombreItem);
+                if (itemSeleccionado != null)
+                {
+                    terrenoActual = terreno;
+                    break;
+                }
+            }
+
+            if (itemSeleccionado != null && terrenoActual != null)
+            {
+                gameUpdater.UsarItem(criaturaSeleccionada, itemSeleccionado);
+                ActualizarDataGrids(terrenoActual);
+            }
+        }
+
+        private void buttonAtacar_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
